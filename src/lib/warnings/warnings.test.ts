@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { WEEKDAYS } from "@/lib/clock/clock";
 import type { Household, Show } from "@/lib/model/types";
 import { createKid } from "@/lib/routine/routine";
 import { seedHousehold } from "@/lib/seed/seed";
@@ -61,7 +62,7 @@ describe("each warning triggers on its condition and its fixes clear it (C2.2, C
     h.kids[0].channels[0].windows[0].end = "17:15";
     h.kids[0].channels[0].programme = ["a", "b", "c"];
     h.kids[0].allowances = h.kids[0].allowances.map((a) =>
-      a.tech === "games" ? { ...a, minutesPerDay: 10, daysPerWeek: 7 } : a,
+      a.tech === "games" ? { ...a, minutesPerDay: 10, days: [...WEEKDAYS] } : a,
     );
     const w = only(h, "W01");
     expect(w.length).toBeGreaterThan(0);
@@ -90,7 +91,7 @@ describe("each warning triggers on its condition and its fixes clear it (C2.2, C
     h.kids[0].channels[0].windows[0].days = ["mon", "wed", "fri", "sun"];
     h.kids[0].channels[0].windows[0].end = "17:00";
     h.kids[0].allowances = h.kids[0].allowances.map((a) =>
-      a.tech === "games" ? { ...a, minutesPerDay: 30, daysPerWeek: 7 } : a,
+      a.tech === "games" ? { ...a, minutesPerDay: 30, days: [...WEEKDAYS] } : a,
     );
     // 27 x 4 + 30 x 7 = 318 > 120, and Monday 57 > 30 raises W01 too.
     const w = only(h, "W02");

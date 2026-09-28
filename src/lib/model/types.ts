@@ -63,8 +63,9 @@ export type RoutineBlock = {
 
 export type Allowance = {
   tech: CountableTech;
+  /** Planned minutes on each chosen day. Starts at 0; the file's ceiling is shown beside it (D47). */
   minutesPerDay: number;
-  daysPerWeek: number;
+  days: Weekday[];
   source: "manual" | "device";
 };
 

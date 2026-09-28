@@ -189,9 +189,7 @@ function kidWarnings(h: Household, kid: Kid, now: Date): Warning[] {
               updateKid(hh, kid.id, (k) => ({
                 ...k,
                 allowances: k.allowances.map((x) =>
-                  x.tech === a.tech
-                    ? { ...x, minutesPerDay: 0, daysPerWeek: 0 }
-                    : x,
+                  x.tech === a.tech ? { ...x, minutesPerDay: 0, days: [] } : x,
                 ),
               })),
           },

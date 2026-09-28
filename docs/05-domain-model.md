@@ -56,8 +56,8 @@ The block with `kind = screen` is the kid's screen slot. TV channel windows defa
 | Field         | Type                            | Notes                                                                                                            |
 | ------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | tech          | `longform` `games` `schoolApps` | Only technologies that count towards the budget (D13). Audio and video calls do not count and are not allowances |
-| minutesPerDay | number                          | Prefilled from the bracket's tech stage row                                                                      |
-| daysPerWeek   | number                          | Prefilled                                                                                                        |
+| minutesPerDay | number | Starts at 0; the bracket's tech stage row is the ceiling shown beside it (D47) |
+| days | Weekday[] | The days the parent chose (D47) |
 | source        | `manual` `device`               | `device` is reserved for the future console counting (D25). Always `manual` in v1                                |
 
 Long-form TV is special: its planned minutes come from the channel schedules, not from this record. The `longform` allowance only holds the parent's chosen ceiling for display; the accumulator uses the schedule.

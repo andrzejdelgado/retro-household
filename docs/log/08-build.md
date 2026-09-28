@@ -138,3 +138,19 @@ Decisions and deviations:
 - C1.1's timed run waits for M10 (print), as the dev plan allows.
 
 Check: lint, typecheck, format:check, 179 tests, build exit 0; J3 walked at both widths. Proves: C2.5, C3.4 (screens). Status: closed.
+
+## M7 — Screen time, warnings list, settings, sources
+Date: 2026-09-28
+
+Steps taken (in order):
+1. S08 Screen time: the cap sentence with a why popover, one card per technology with the file's depth line (a leading "Same" resolved against the row above for display only), "opens at N" badges for closed technologies, television read-only with a link to channels, minutes and day toggles for games and school apps, inline warnings, the viewing log, a Save strip above the budget bar.
+2. S17 Warnings: every visible warning grouped by kid then household, cards with the first fix as primary (D32) and dismiss, an "Open" link to the owning screen, the mute note.
+3. S15 Settings: household name, hide all warnings, change passcode and "Lock now", demo clock with clear, load demo household and reset everything behind confirms, the Sources link.
+4. S16 Sources: an accordion per practice file with the source links and the conflict rule.
+5. Design review with the seed household: warnings list (five from the seed, with the refused "earlier" fix carrying its reason), dismiss (bell 5 to 4), Ella's screen time (30 minutes of games on Monday raised W01 and W02 at the field, the budget bar turned to the over state), mute (bell empty), desktop layouts of all three.
+
+Decisions and deviations:
+- D47 logged: the seed exposed that the file's separate ceilings for television, games and school apps exceed the global cap when stacked on one day, so a fresh 7-year-old on prefilled values raised ten warnings. Manual allowances now start at zero with the file's ceiling shown beside the field, and carry chosen days instead of a count. Model, accumulator, warnings, seed, tests, spec and domain model updated. Stored data from before this change does not load; the browser database was cleared, since no real users exist yet.
+- The Next.js runtime overlay showed the crash from the old data shape; the record keeps it as the reason the model gained `days`.
+
+Check: lint, typecheck, format:check, 180 tests, build exit 0; J5 and J13 walked at both widths. Proves: C2.2, C2.3, C2.4 (screens), C6.1 (through the demo clock control; the birthday walk waits for M12). Status: closed.

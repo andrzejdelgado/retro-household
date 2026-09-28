@@ -13,15 +13,11 @@ export function tvMinutes(kid: Kid, weekday: Weekday, shows: Show[]): number {
   );
 }
 
-/**
- * Manual allowances (games, school apps) have days per week but no chosen days; they are
- * counted on the first N weekdays, Monday first (docs/log/08-build.md M3).
- */
+/** Manual allowances (games, school apps) count on the days the parent chose (D47). */
 export function manualMinutes(kid: Kid, weekday: Weekday): number {
-  const index = WEEKDAYS.indexOf(weekday);
   return kid.allowances
-    .filter((a) => a.tech !== "longform")
-    .reduce((sum, a) => sum + (index < a.daysPerWeek ? a.minutesPerDay : 0), 0);
+    .filter((a) => a.tech !== "longform" && a.days.includes(weekday))
+    .reduce((sum, a) => sum + a.minutesPerDay, 0);
 }
 
 export function plannedMinutes(

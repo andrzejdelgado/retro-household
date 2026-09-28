@@ -117,7 +117,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 
 - **Purpose.** See and set every technology allowance for this kid, against the cap.
 - **Entry.** S05.
-- **Content.** Top: the cap for this age as a sentence with its why. Then one row per technology from the tech stages: name, this age's depth line, and either a minutes-per-day and days-per-week control (open technologies) or "opens at N" (closed ones). Long-form TV is read-only here and says "set by the TV schedule" with a link to S09. Games and school apps are editable when open. Below the rows: the viewing log as a plain list by date. Budget bar pinned.
+- **Content.** Top: the cap for this age as a sentence with its why. Then one row per technology from the tech stages: name, this age's depth line, and either a minutes-per-day and days-per-week control (open technologies) or "opens at N" (closed ones). Long-form TV is read-only here and says "set by the TV schedule" with a link to S09. Games and school apps are editable when open: minutes a day and the chosen days, starting at none, with the file's ceiling shown beside them (D47). Below the rows: the viewing log as a plain list by date. Budget bar pinned.
 - **Primary action.** Save.
 - **States.** Under 3: every row reads closed; the log is empty with "No viewing yet."
 - **Warnings.** W01, W02, W03 under the field that caused them. W05 when a value is entered for a closed technology. W12 as an informational line in the log.

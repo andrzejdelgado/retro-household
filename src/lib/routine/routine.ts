@@ -90,9 +90,12 @@ export function createKid(
       sun: weekend.id,
     },
     dayTypes: [weekday, weekend],
+    // Allowances start at none; the file's ceiling is shown beside the field (D47).
     allowances: getDefaultAllowances(bracket).map((a) => ({
-      ...a,
-      source: "manual",
+      tech: a.tech,
+      minutesPerDay: 0,
+      days: [],
+      source: "manual" as const,
     })),
     channels: [],
     firstVisitSeen: false,
@@ -364,16 +367,7 @@ export function refreshForBracket(kid: Kid, now: Date): Kid {
       );
       return { ...d, blocks: sortBlocks([...edited, ...fresh]) };
     }),
-    allowances: kid.allowances.map((a) => {
-      const def = getDefaultAllowances(bracket).find((x) => x.tech === a.tech);
-      return def
-        ? {
-            ...a,
-            minutesPerDay: def.minutesPerDay,
-            daysPerWeek: def.daysPerWeek,
-          }
-        : a;
-    }),
+    // Allowances are the parent's own choice and are kept across a bracket change (D47).
   };
 }
 

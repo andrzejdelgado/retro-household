@@ -67,6 +67,7 @@ Retro Household is a parent-facing web app for households with children aged 0 t
 | D44 | Desktop layouts follow the reference grids: the routine as time rows by day-type columns, the TV timeline as time rows by kid columns. Practices and rules are picked as selectable tiles with "Add (n selected)".                                                                                                                                                                                                                                        |
 | D45 | Refines D28: when a time change swallows a following block entirely, that block is removed and reported so the parent can undo; only the sleep block refuses the change. Found while building M3: the demo's own case (a class until 17:00) was a dead end under pure refusal. |
 | D46 | The TV enforces the recommended cap only when it is above zero. A kid under 3 whose parent kept a channel after W05 watches within the channel window only, and every minute is logged as overage (W12). Otherwise D14 (warnings never block) and D15 (off when spent) would contradict each other. |
+| D47 | Manual allowances (games, school apps) start at zero with the file's ceiling shown beside the field, and each carries the days the parent chose rather than a count. Found in M7: the file's separate ceilings for television, games and school apps exceed the global cap when stacked on one day, so a fresh 7-year-old on prefilled values raised ten warnings, against G2. |
 
 ## 4. Scope
 

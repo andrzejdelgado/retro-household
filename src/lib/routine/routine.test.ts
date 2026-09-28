@@ -39,14 +39,9 @@ describe("createKid", () => {
     });
     expect(sleepBlock(dayTypeFor(kid, "mon"))?.start).toBe("19:00");
     expect(kid.allowances).toEqual([
-      { tech: "longform", minutesPerDay: 30, daysPerWeek: 4, source: "manual" },
-      { tech: "games", minutesPerDay: 0, daysPerWeek: 0, source: "manual" },
-      {
-        tech: "schoolApps",
-        minutesPerDay: 0,
-        daysPerWeek: 0,
-        source: "manual",
-      },
+      { tech: "longform", minutesPerDay: 0, days: [], source: "manual" },
+      { tech: "games", minutesPerDay: 0, days: [], source: "manual" },
+      { tech: "schoolApps", minutesPerDay: 0, days: [], source: "manual" },
     ]);
   });
   it("gives a kid under 3 no screen block", () => {
@@ -163,10 +158,6 @@ describe("refreshForBracket (D08, C6.1)", () => {
     ).toBeDefined();
     expect(screenBlock(monday)).toMatchObject({ start: "16:30", end: "17:15" });
     expect(sleepBlock(monday)?.start).toBe("19:30");
-    expect(grown.allowances.find((a) => a.tech === "longform")).toMatchObject({
-      minutesPerDay: 45,
-      daysPerWeek: 5,
-    });
   });
 });
 

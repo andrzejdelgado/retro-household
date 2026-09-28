@@ -57,6 +57,18 @@ export function getDefaultAllowances(
   });
 }
 
+/**
+ * A row's depth with a leading "Same" resolved against the row above, for display. The stored
+ * text stays as written in the file so the content test can compare it (D24).
+ */
+export function resolvedDepth(tech: Tech, row: TechStageRow): string {
+  if (!/^Same\b/.test(row.depth)) return row.depth;
+  const i = tech.rows.indexOf(row);
+  const previous = i > 0 ? resolvedDepth(tech, tech.rows[i - 1]) : "";
+  const rest = row.depth.replace(/^Same[.,]?\s*/, "");
+  return rest ? `${previous}. ${rest}`.replace(/\.\.\s/, ". ") : previous;
+}
+
 /** The age at which a closed technology opens, from its first "later" entry, or null. */
 export function opensAt(tech: Tech): number | null {
   return tech.later.find((l) => l.opensAt !== null)?.opensAt ?? null;

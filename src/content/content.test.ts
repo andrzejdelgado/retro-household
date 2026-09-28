@@ -16,6 +16,7 @@ import {
   bracketsInRange,
   getRhythmTemplate,
   getTechStage,
+  resolvedDepth,
   type Domain,
 } from "./index";
 
@@ -223,4 +224,17 @@ describe("sources are the union of every file's source list", () => {
       expect(s.usedBy).toContain(file);
     });
   }
+});
+
+describe("resolvedDepth", () => {
+  it('replaces a leading "Same" with the row above', () => {
+    const games = TECHS.find((t) => t.id === "games")!;
+    expect(resolvedDepth(games, games.rows[2])).toBe(
+      "Offline, single-player, retro titles only, no chat, no ads, no purchases, no reward timers, parent has played it first. Titles added at most 1 a month",
+    );
+    const calls = TECHS.find((t) => t.id === "videoCalls")!;
+    expect(resolvedDepth(calls, calls.rows[1])).toBe(
+      "Parent holds the device, known family only. child may talk and show things",
+    );
+  });
 });

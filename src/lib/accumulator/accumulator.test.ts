@@ -40,7 +40,9 @@ describe("planned minutes (C5.1)", () => {
   it("sums placed TV minutes and manual allowances on the first N weekdays", () => {
     const kid = kidWithChannel("2022-03-14");
     kid.allowances = kid.allowances.map((a) =>
-      a.tech === "games" ? { ...a, minutesPerDay: 20, daysPerWeek: 2 } : a,
+      a.tech === "games"
+        ? { ...a, minutesPerDay: 20, days: ["mon", "tue"] }
+        : a,
     );
     expect(plannedMinutes(kid, "mon", shows)).toBe(27 + 20);
     expect(plannedMinutes(kid, "tue", shows)).toBe(0 + 20);

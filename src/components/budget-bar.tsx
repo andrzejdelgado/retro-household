@@ -63,7 +63,7 @@ function Numbers({
         <span className="text-muted-foreground">
           Today {Math.round(view.plannedToday)} of {view.cap.minutesPerDay} min
         </span>
-        <span className="text-muted-foreground ml-auto">
+        <span className="text-muted-foreground">
           Week {formatMinutes(view.week.total)} of{" "}
           {formatMinutes(view.cap.minutesPerWeek)}
         </span>
