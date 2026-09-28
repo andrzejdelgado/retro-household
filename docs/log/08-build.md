@@ -54,3 +54,21 @@ Decisions and deviations:
 - Vitest config renamed to `.mts` to stop a Vite loader warning.
 
 Check: lint, typecheck, format:check, 139 tests and build all green. Proves: C2.1, C6.1 (logic). Status: closed.
+
+## M2 — Storage, household state, seed
+Date: 2026-09-28
+
+Steps taken (in order):
+1. Wrote the stored entity types in `src/lib/model/types.ts` from `docs/05-domain-model.md` §1, including the passcode (D40), show category and age range (D43), one programme per channel with an optional per-day override (D30), and a `fromTemplate` flag per routine block so edited blocks survive a bracket change (D08).
+2. Wrote the storage interface (`load`, `save`, `putBlob`, `getBlob`, `deleteBlob`, `clear`) with an in-memory implementation for tests and server rendering and an IndexedDB implementation on `idb` (one household record, one blob store).
+3. Wrote `emptyHousehold()`: default name "Home", nine rules on, Wi-Fi off from 16:00 to 19:30 on weekdays and from 22:00 every day, from the major rules on work and phones.
+4. Wrote the household provider: loads once on mount, `update(mutate)` saves on every change, `replace` for first run, seed and reset.
+5. Round-trip test through fake-indexeddb and the memory store for a household with a kid and a blob, plus clear. 141 tests pass.
+6. Wired the provider into the parent and TV layouts.
+
+Decisions and deviations:
+- The seed household (Miranda and John, kids 2, 4 and 7) needs template application from the routine module, so it moves to M3. The plan's "short demo clips referenced by name" is dropped: ffmpeg is not on this machine and the repository ships no video; seeded shows are metadata and the demo adds real clips through the library (T03 handles a missing file).
+- The "change survives a reload" browser check waits for the first screen that saves (M5); the mechanism is proven by the test.
+- Fixed the Vitest alias for a project path containing a space (`fileURLToPath`, not `URL.pathname`).
+
+Check: lint, typecheck, format:check, 141 tests and build green. Proves: C1.3 (mechanism). Status: closed.
