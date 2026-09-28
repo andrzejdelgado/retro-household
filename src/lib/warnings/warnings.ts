@@ -454,8 +454,11 @@ function kidWarnings(h: Household, kid: Kid, now: Date): Warning[] {
       }
     }
 
-    for (const w of WEEKDAYS) {
-      if (!windowFor(c, w)) continue;
+    // One programme for every day (D30) means one W10 or W11 per channel, not one per weekday.
+    const daysToCheck = c.programmesByDay
+      ? WEEKDAYS.filter((w) => windowFor(c, w))
+      : WEEKDAYS.filter((w) => windowFor(c, w)).slice(0, 1);
+    for (const w of daysToCheck) {
       const l = layout(c, w, h.shows);
       const ids = programmeFor(c, w);
       if (ids.length === 0) {
@@ -464,11 +467,13 @@ function kidWarnings(h: Household, kid: Kid, now: Date): Warning[] {
         );
         out.push({
           code: "W11",
-          key: `W11:${c.id}:${w}`,
+          key: c.programmesByDay ? `W11:${c.id}:${w}` : `W11:${c.id}`,
           kidId: kid.id,
           channelId: c.id,
           weekday: w,
-          message: `${c.name} is on air on ${day(w)} with nothing to play. ${kid.name} would tune in to an empty channel.`,
+          message: c.programmesByDay
+            ? `${c.name} is on air on ${day(w)} with nothing to play. ${kid.name} would tune in to an empty channel.`
+            : `${c.name} is on air with nothing to play. ${kid.name} would tune in to an empty channel.`,
           fixes: [
             ...(donor
               ? [
@@ -506,11 +511,13 @@ function kidWarnings(h: Household, kid: Kid, now: Date): Warning[] {
         );
         out.push({
           code: "W10",
-          key: `W10:${c.id}:${w}`,
+          key: c.programmesByDay ? `W10:${c.id}:${w}` : `W10:${c.id}`,
           kidId: kid.id,
           channelId: c.id,
           weekday: w,
-          message: `"${show?.title ?? "A show"}" would be cut by the end of the window on ${day(w)}. A programme never ends mid-episode.`,
+          message: c.programmesByDay
+            ? `"${show?.title ?? "A show"}" would be cut by the end of the window on ${day(w)}. A programme never ends mid-episode.`
+            : `"${show?.title ?? "A show"}" would be cut by the end of the window. A programme never ends mid-episode.`,
           fixes: [
             {
               id: "remove",

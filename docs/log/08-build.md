@@ -173,3 +173,15 @@ Decisions and deviations:
 - This shadcn ToggleGroup takes an array value even for single selection; used as shipped.
 
 Check: lint, typecheck, format:check, 180 tests, build exit 0; J6 walked at both widths. Proves: C4.2 (screen), C4.4 (parent side), C5.4. Status: closed.
+
+## M9 — TV timeline
+Date: 2026-09-28
+
+Steps taken (in order):
+1. S11 under the TV tab: a day switcher over the seven weekdays, one lane per kid on mobile as a horizontal track and one column per kid on desktop as a time grid (D44), windows as bars in the kid's colour that link to the channel editor, overlapping windows ringed, the routine's school, dinner and sleep regions hatched behind each lane so a refused proposal explains itself, W09 cards with the first fix as the card's primary (D32) and the "earlier" fix disabled with its reason, W06 to W08 for the channels on air that day, "Open library" as a link.
+2. Design review: journey J7 walked on the seed household at phone width. Stagger moved Ella after Henry and cleared three overlaps; the after-dinner warning followed with two fixes; shorten cleared it and Monday read "No conflicts". Desktop grid checked.
+
+Decisions and deviations:
+- Shortening a window made the programme not fit and raised one "does not fit" warning per weekday for a programme that is one list. W10 and W11 are now one per channel when the programme is shared (D30) and one per weekday only when the parent varies by day; the dismissal key follows.
+
+Check: lint, typecheck, format:check, 180 tests, build exit 0; J7 walked at both widths. Proves: C5.5 (screen). Status: closed.

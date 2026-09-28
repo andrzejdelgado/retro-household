@@ -191,7 +191,8 @@ describe("each warning triggers on its condition and its fixes clear it (C2.2, C
     const h = simonaHousehold();
     h.kids[0].channels[0].programme = ["a", "b", "c"];
     const w = only(h, "W10");
-    expect(w.length).toBe(4);
+    // One programme for all four days raises one warning, not four.
+    expect(w.length).toBe(1);
     expect(w[0].fixes[1].label).toBe("Extend the window by 17 minutes");
     expect(only(w[0].fixes[0].apply(h), "W10")).toHaveLength(0);
   });
