@@ -1,7 +1,9 @@
 # 00 — Discovery
+
 Date: 2026-09-28
 
 ## Inputs
+
 - User brief in chat: product idea, audience (parents of children 0 to 8), stack, deployment, UX and UI intentions, request for a plan leading to a PRD and a dev plan, request to document the process for reuse.
 - `best-parctices/household-major-rules.md`
 - `best-parctices/household-tech-access-stages.md`
@@ -11,6 +13,7 @@ Date: 2026-09-28
 - `ui-inspration/retro-library.png`
 
 ## Steps taken (in order)
+
 1. Listed every file in the folder. Confirmed the scope boundary (D01).
 2. Read all five practice files in full and viewed the inspiration image.
 3. Wrote a short summary of the material back to the user and named three tensions: three product layers mixed (planning, home control, hardware); no database plus OAuth; audience is parents, not kids.
@@ -27,22 +30,26 @@ Date: 2026-09-28
 14. User corrected: process files must be project-agnostic. Split the method (`process/`) from the record (`docs/log/`), folded the lessons into the playbook generically.
 
 ## Decisions made
+
 D01 to D26, recorded in `PLAN.md` section 3.
 
 ## Outputs
+
 - `PLAN.md`
 - `process/README.md`
 - `process/00-discovery.md` (playbook)
 - `docs/log/00-discovery.md` (this record)
 
 ## Exit check result
+
 The AI ran out of questions after four batches. Every user answer maps to a decision ID. Passed.
 
 ## What was learned
+
 - Reading every input before the first question removed a whole round of questions. The tensions section did more work than the questions themselves: two of the three tensions changed the product (storage, audience).
 - Each batch uncovered one fact that reshaped the model (per-kid channels, real viewing tracking, single demo device). Four batches were needed; stopping at two would have produced a wrong data model.
 - Stating assumptions at the end of each batch let the user correct one (sibling rule) that was never asked about.
 
-
 ## What to change next time
+
 Folded into `process/00-discovery.md` under Lessons.

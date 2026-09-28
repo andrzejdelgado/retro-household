@@ -17,6 +17,7 @@ Date: 2026-09-28. Inputs: `docs/04-journeys.md`, `docs/05-domain-model.md`, `doc
 ## 1. Shared components
 
 ### Budget bar and budget sheet
+
 Purpose: the accumulator, always visible where minutes can change (C5.3).
 
 - **Bar** (mobile): a single row pinned above the tab bar. Left: kid colour dot and name. Middle: "Today 25 of 30 min". Right: "Week 1h40 of 2h". A thin fill under the text shows today's ratio. Four states: under (default), at cap (full fill), over (fill in the warning colour, numbers unchanged), over by choice (neutral fill, numbers unchanged, see below). Tapping opens the sheet. While any field on the screen has focus, the bar collapses to a one-line chip in the page header and the tab bar hides; both restore on blur, so the total stays in view above the keyboard (C5.3). Desktop: the same content as a card at the top of the right-hand column, always in view.
@@ -24,18 +25,23 @@ Purpose: the accumulator, always visible where minutes can change (C5.3).
 - Numbers come from `plannedMinutes` and `plannedWeek`. For a kid with a zero cap the bar reads "Today 0 of 0 min" and any planned minutes put it in the over state at once (C5.4). Once the parent has dismissed the warning for that subject, the bar shows over by choice: the numbers are unchanged and the fill is neutral, so an informed decision stops signalling (D37).
 
 ### Warning card
+
 One sentence, consequence first. Fix buttons (shadcn Button, secondary variant), at most three. Dismiss as a small tertiary control at the end. Never a red banner; the tone is a note from a calm adult.
 
 ### Bracket range picker
+
 For custom practices and custom rules that apply to some ages only. A row of eight equal segments labelled 0 to 8 at the boundaries (nine tick labels, eight cells). Tap one cell to select a single year, tap another to extend to a contiguous range. Selected cells fill with the kid colour. Built on shadcn ToggleGroup with a customisation: selection is always contiguous. Log the customisation in Phase 5.
 
 ### Day switcher
+
 A shadcn Tabs row: "Weekday", "Weekend" by default. After a split, one tab per distinct DayType with the weekday names it covers under the label ("Mon · Tue · Wed · Thu"). An overflow menu holds "Split weekdays", "Split weekend", "Copy this day to…", "Merge back". "Copy this day to…" points the chosen weekdays at this day type, so days that are the same are one day edited in one place; "Split" makes a day its own again (D29). On mobile the tabs scroll horizontally inside their own strip; the page itself does not.
 
 ### Timeline (routine)
+
 A vertical list of blocks in time order, each a card with time range, icon by `kind`, title, and a chevron. Editing a block opens a Sheet with start, end, title, note, and the why if it came from a practice. Reordering is by changing times, not by drag, so mobile stays reliable. Times ripple: changing a block's end moves the next block's start to match, changing a start moves the previous block's end, and blocks never overlap. The sleep block anchors the end of the day; a change that would push any block past it is refused inline with the reason (D28). Gaps are shown as a thin dashed line with an add action.
 
 ### TV timeline (household)
+
 Horizontal hours from 15:00 to 20:00 by default, expanding to include any window outside it. One lane per kid in the kid's colour. Windows are rounded bars with the channel icon. Overlaps are drawn with the two bars offset and a warning marker between them. `away`, dinner and sleep blocks from each kid's routine appear as faint hatched regions in that kid's lane so the parent sees why a proposal is refused.
 
 ## 2. Navigation
@@ -47,9 +53,11 @@ TV app: a separate full-screen route `/tv` with its own dark theme and no parent
 ## 3. Parent app screens
 
 ### S01 — Welcome
+
 Removed (D35). First run opens S03 directly with the purpose sentence on top; the household is created with the default name "Home" when the first kid is saved and renamed in S15. "Load demo household" lives in S15.
 
 ### S03 — Add or edit kid
+
 - **Purpose.** Create a kid profile with the facts the app needs.
 - **Entry.** First run, after the passcode is set on S18; S04 add kid; S05 edit; "Save and add another" on this screen.
 - **Content.** On first run the screen opens under the product name and one sentence: "Routines, rules and a TV schedule for a household with children under 8, printed for the fridge.", headed "Add your first child"; the tab bar is hidden and there is no back until the first kid exists (D35, D36). Name. Birthdate (native date input). A live line under it: "Simona is 4 · bracket 4 to 5" that updates as the date is typed. PIN, optional: four digit boxes (shadcn InputOTP) under the line "For the TV app. You can set it later." On edit the boxes show the current digits. Colour: a row of six swatches. When editing, a destructive "Remove kid" at the bottom behind a confirm.
@@ -61,6 +69,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C1.2, C6.1.
 
 ### S04 — Home
+
 - **Purpose.** See the household at a glance and get to any kid.
 - **Entry.** Tab bar. Returning visits open here after S18 (D36, D40).
 - **Content.** Household name as the title. One card per kid: colour, name, age and bracket, today's planned minutes against cap as a small bar, the number of active warnings if any. Below the cards: a row of two quick actions, "Print" (opens S14 with the household rules page selected) and "TV timeline" (S11).
@@ -71,6 +80,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C1.2, C1.4.
 
 ### S05 — Kid overview
+
 - **Purpose.** The hub for one kid.
 - **Entry.** S04 card.
 - **Content.** Header: name, age and bracket, the TV PIN or "No PIN yet", edit link to S03. On the first visit after creation, a dismissable line under the header: "Set up from recommended practice for age 4. Change anything." Four section cards in order: Routine (the day switcher's day types and how many blocks each has), Screen time (today's planned total and what is open at this age in one line), TV channels (up to four small tiles with icon and window, or the empty state), Print (buttons for each distinct day and one for the rules page). Budget bar pinned.
@@ -81,6 +91,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C1.2, C5.3, C5.4, C6.1.
 
 ### S06 — Routine
+
 - **Purpose.** Build and edit one kid's day rhythm per day type.
 - **Entry.** S05.
 - **Content.** Day switcher. Timeline of blocks for the selected day type. An add button at the bottom offering "From practices" (S07) and "Custom block" (opens the block sheet empty). The `screen` block shows a small link "TV window follows this slot".
@@ -92,6 +103,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C1.1, C2.1, C2.5, C3.4.
 
 ### S07 — Practices library
+
 - **Purpose.** Pick best practice for this kid's age and add it to the routine.
 - **Entry.** S06 add from practices.
 - **Content.** Seven domain tabs (shadcn Tabs, scrollable strip). Under each, the practices whose bracket range includes the kid's bracket, as selectable tiles: title, duration text, a "why" line, source link (S16). Tapping a tile selects it; a pinned bar reads "Add (n selected)" (D44). Practices already in the routine show a check and cannot be selected again. A filter "Show all ages" reveals the rest, each with its age range and a note.
@@ -102,6 +114,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C2.1, C2.5.
 
 ### S08 — Screen time
+
 - **Purpose.** See and set every technology allowance for this kid, against the cap.
 - **Entry.** S05.
 - **Content.** Top: the cap for this age as a sentence with its why. Then one row per technology from the tech stages: name, this age's depth line, and either a minutes-per-day and days-per-week control (open technologies) or "opens at N" (closed ones). Long-form TV is read-only here and says "set by the TV schedule" with a link to S09. Games and school apps are editable when open. Below the rows: the viewing log as a plain list by date. Budget bar pinned.
@@ -112,6 +125,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C2.2, C2.3, C2.4, C5.1, C5.2, C5.3.
 
 ### S09 — Channels
+
 - **Purpose.** Manage a kid's up to four channels.
 - **Entry.** S05, and the kid's tab on S20.
 - **Content.** Up to four channel cards: icon, name, window summary ("Mon Wed Fri Sun · 17:00 to 17:30"), the number of programmed days of the window's days. Budget bar pinned.
@@ -122,6 +136,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C5.4.
 
 ### S10 — Channel editor
+
 - **Purpose.** Set when a channel is on air and what it plays.
 - **Entry.** S09 card or add.
 - **Content.** Name, icon picker (a fixed set of twelve simple glyphs). Window: a weekday selector (seven toggles, defaults from the bracket's day rules) and start and end times, defaulting from the kid's screen slot and the daily cap. Programme: one ordered list of shows that plays on every day of the window, with a layout preview column showing the computed start time of each and the off-air remainder, and an add button opening the library as a sheet. A "Vary by day" switch, off by default, reveals a day switcher over the window's days with a programme per day and a "Copy to…" action (D30). Budget bar pinned.
@@ -132,6 +147,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C4.2, C5.1, C5.2, C5.3.
 
 ### S11 — TV timeline
+
 - **Purpose.** Resolve conflicts on the one household TV.
 - **Entry.** Tab bar (TV), S04 quick action.
 - **Content.** A day switcher over the seven weekdays. The household TV timeline for the selected day. Under it, the list of W09 warnings for that day, each with its fixes. A fix that another warning would refuse (for example moving a kid before pick-up) is shown disabled with the refusing reason in one line, so the parent sees why. Secondary link to the Library (S12).
@@ -142,6 +158,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C5.5.
 
 ### S12 — Library
+
 - **Purpose.** The household's videos.
 - **Entry.** S11 link, S10 add sheet.
 - **Content.** A row of category tiles at the top (All, Stories, Films, Nature, Music, Learning, Family videos, Other) and an age filter (the bracket range picker, collapsed until opened), then a grid of shows: poster, title, duration, category, age range, which channels use it (D43). Add opens a Dialog on desktop and a Drawer on mobile with a drop zone or file picker (multiple files allowed), title prefilled from the file name, a category Select and the age range picker. Import reads duration and captures a poster frame; a progress line per file while it runs.
@@ -152,6 +169,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C4.2.
 
 ### S13 — Rules
+
 - **Purpose.** The household's rules for adults and the home, and the Wi-Fi hours.
 - **Entry.** Tab bar.
 - **Content.** Nine major rules as selectable tiles in a grid: title, a why line, selected state when the rule is on (D44). An "Add a rule" text field at the end for custom rules with an optional bracket range picker. Below: Wi-Fi off windows as rows (days, start to end) with add and remove. A print button for the rules page (S14).
@@ -162,6 +180,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C2.5, C3.2.
 
 ### S14 — Print
+
 - **Purpose.** Preview and print one page.
 - **Entry.** S05, S06, S13, S04.
 - **Content.** A picker of pages: one per kid per day type object (weekdays copied onto one another share a page headed with all their day names), plus the rules page. The preview renders the printed page at page proportions. The page for a kid's day: kid name and the day names it covers in the header, age, the timeline as rows of time and title with the kind icon, the TV window as one row, Wi-Fi off hours as a footer line. The rules page: household name, enabled rules, Wi-Fi off windows, each kid's TV hours per day.
@@ -172,6 +191,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C3.1, C3.2, C3.3, C3.4.
 
 ### S15 — Settings
+
 - **Purpose.** The few switches the household has.
 - **Entry.** Tab bar.
 - **Content.** Household name. "Hide all warnings" switch with a line "Budgets are still shown." A Passcode section: change passcode, and "Lock now" which returns to S18. A Demo section: demo clock (date and time override with a clear button), "Load demo household" (confirm before replacing data), "Reset everything" (confirm). Links: Sources (S16), About.
@@ -182,6 +202,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C2.4, C6.1.
 
 ### S16 — Sources
+
 - **Purpose.** Show where the defaults come from.
 - **Entry.** S15, any why line.
 - **Content.** The union of the sources in the practice files, grouped by which file uses them, with titles and links. A note on how conflicts were resolved: the stricter guidance wins.
@@ -190,16 +211,18 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C2.5.
 
 ### S17 — Warnings
+
 - **Purpose.** Every active warning in the household in one list.
 - **Entry.** The bell in the top bar, with the count on it (D41).
 - **Content.** Warning cards grouped by kid, then household-level ones (Wi-Fi, library), each with its fixes and its dismiss, and a link to the screen it belongs to. Muted warnings (Settings) are not listed; a line at the top says so when the global switch is on.
 - **Primary action.** None. Each card carries its fixes; the first fix is that card's primary.
-- **States.** No warnings: "Nothing needs your attention." with no action. 
+- **States.** No warnings: "Nothing needs your attention." with no action.
 - **Warnings.** All of W01 to W12, as cards.
 - **Must not.** Offer "mark all as read". Dismissing is the only way a warning leaves the list. Show anything that is not a warning: no news, no tips.
 - **Criteria.** C2.2, C2.4.
 
 ### S18 — Passcode
+
 - **Purpose.** Open the parent app.
 - **Entry.** Every new browser session, first run, "Lock now" in S15, and any navigation from the TV app to the parent app (D40).
 - **Content.** Product name, one sentence, and a passcode field of four to six digits (InputOTP). On first run the screen is in set mode: "Choose a parent passcode", then "Repeat it", then Continue to S03. On later visits it is in enter mode with a "Forgot the passcode?" link to S19.
@@ -210,6 +233,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C1.2.
 
 ### S19 — Forgot passcode
+
 - **Purpose.** Say plainly what can and cannot be done.
 - **Entry.** S18 link.
 - **Content.** Two sentences: the passcode lives only in this browser and nothing can verify who is asking, so the only way past it is to reset everything, which deletes every kid, routine, channel and video. Two actions: "Back" and "Reset everything" behind an AlertDialog whose confirm button says "Delete everything and start over".
@@ -219,6 +243,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 - **Criteria.** C1.2.
 
 ### S20 — Household channels
+
 - **Purpose.** See every channel in the house and whether it is on air right now.
 - **Entry.** The Channels view under the TV tab (D42).
 - **Content.** A row of kid tabs (All, then one per kid in the kid's colour). Under it, a grid of channel tiles: icon, name, kid dot, the window summary, and a Badge reading "On air" with the current show, or "Off air" with the next on-air day and time for the parent. Tapping a tile opens S10. Each kid section ends with an add tile that opens S10 for that kid, disabled with its reason at four channels or with the W05 note for a closed bracket.
@@ -233,6 +258,7 @@ Removed (D35). First run opens S03 directly with the purpose sentence on top; th
 The TV app is dark, quiet, and wordless wherever a child is the reader. Focus is shown as a soft ring. There is no cursor-dependent interaction; the mouse works but is never required. No sound outside playback. No text smaller than 32px on a 1080p canvas.
 
 ### T01 — PIN
+
 - **Purpose.** Identify the kid.
 - **Entry.** `/tv`, Escape from anywhere.
 - **Content.** Four large dots. Digits are entered on the keyboard or by clicking a large on-screen numpad. Nothing else. No kid names, no list, no hint.
@@ -242,6 +268,7 @@ The TV app is dark, quiet, and wordless wherever a child is the reader. Focus is
 - **Criteria.** C4.6, C4.7.
 
 ### T02 — Channel picker
+
 - **Purpose.** Choose a channel with the eyes, not by reading.
 - **Entry.** T01, Escape from T03 or T04 does not come here; Escape always returns to T01 (D26).
 - **Content.** Up to four large tiles in a row (two rows of two on narrow canvases). An on-air tile shows the current show's poster, the channel icon, and the channel name in large type. An off-air tile is dimmed to a flat dark surface with the channel icon at low contrast and a small "off" glyph; no poster, no name emphasis (C4.4). The kid's colour tints the focus ring.
@@ -251,6 +278,7 @@ The TV app is dark, quiet, and wordless wherever a child is the reader. Focus is
 - **Criteria.** C4.4, C4.7.
 
 ### T03 — Playback
+
 - **Purpose.** Play the channel like broadcast.
 - **Entry.** T02.
 - **Content.** Full-screen video. On entry and on channel change, the channel icon and name appear in a corner for two seconds and fade. Left and right arrows switch to the kid's neighbouring channels. Nothing else on screen.
@@ -261,6 +289,7 @@ The TV app is dark, quiet, and wordless wherever a child is the reader. Focus is
 - **Criteria.** C4.1, C4.3, C4.5.
 
 ### T04 — Off-air
+
 - **Purpose.** Nothing to watch, nothing to wait for.
 - **Entry.** T02 on an off-air channel, T03 at window end or budget end.
 - **Content.** A slow, wordless, silent animation on the dark surface: a soft shape that drifts and breathes over about a minute, in the kid's colour at low contrast. No text, no icon that reads as a clock, no motion faster than a breath. Under prefers-reduced-motion the shape is static at low contrast.
@@ -269,6 +298,7 @@ The TV app is dark, quiet, and wordless wherever a child is the reader. Focus is
 - **Criteria.** C4.3.
 
 ### T05 — Co-watch overlay
+
 - **Purpose.** Let the parent record that other kids are watching too.
 - **Entry.** Cmd+K on T03 or T04, and once automatically when T03 starts playing inside an acknowledged overlap, with the other acknowledged kids already switched on so that Done confirms (D33). This is a parent gesture and the overlay may use words.
 - **Content.** The picture dims to a quarter. A centred panel titled "Who is watching with Simona?" lists every other kid as a row with their colour, name, and a switch (shadcn Switch, large). Under each switch a one-line note when the kid's budget is zero or nearly spent: "Selena has no screen budget at 1. Minutes here count as overage." A "Done" button. Escape also closes.
@@ -279,14 +309,14 @@ The TV app is dark, quiet, and wordless wherever a child is the reader. Focus is
 
 ## 5. Coverage
 
-| Criterion group | Screens |
-|---|---|
-| C1 setup | S18, S03, S04, S05, S06 |
+| Criterion group       | Screens                                         |
+| --------------------- | ----------------------------------------------- |
+| C1 setup              | S18, S03, S04, S05, S06                         |
 | C2 informed deviation | S06, S07, S08, S13, S15, S16, S17, warning card |
-| C3 print | S14 |
-| C4 TV | T01 to T05, S10, S12, S20 |
-| C5 accumulator | budget bar and sheet, S05, S08, S09, S10, S11 |
-| C6 time | S03, S05, S15 |
-| C7 UI | every parent screen |
+| C3 print              | S14                                             |
+| C4 TV                 | T01 to T05, S10, S12, S20                       |
+| C5 accumulator        | budget bar and sheet, S05, S08, S09, S10, S11   |
+| C6 time               | S03, S05, S15                                   |
+| C7 UI                 | every parent screen                             |
 
 Every journey step in `docs/04-journeys.md` points at one of these screens. Every screen lists the warnings it can show, and every warning in the catalogue (W01 to W12) appears on at least one screen with its fixes.

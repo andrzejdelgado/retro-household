@@ -17,21 +17,22 @@ DEV-PLAN.md         the project's build milestones
 
 ## The shape of a project
 
-| Phase | Name | Produces | Closes when |
-|---|---|---|---|
-| 0 | Discovery | Decision log, plan | The AI has no questions left and the user says go |
-| 0 | Repo and process | Public repo, `process/` and `docs/log/` in place | First push succeeds |
-| 1 | Goals | Goals, non-goals, success criteria | Every goal has a checkable criterion |
-| 2 | UX research | Personas, insights | Every feature traces to an insight, every insight to a source |
-| 3 | Journeys and specs | Journeys, domain model, screen specs | Every journey step points at a screen, every screen lists its warnings and fixes |
-| 4 | PRD | PRD | User approves; every decision is reflected or superseded |
-| 5 | Design system | Tokens, component inventory, customisation log, per-screen design notes | Every screen has design notes for each target width; every customisation has a reason |
-| 6 | Dev plan | Ordered milestones with checks | Every milestone has a check that can fail |
-| 7 | Build | Working software, screens designed in code as built | Each milestone's check passes and each screen passes design review |
+| Phase | Name               | Produces                                                                | Closes when                                                                           |
+| ----- | ------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| 0     | Discovery          | Decision log, plan                                                      | The AI has no questions left and the user says go                                     |
+| 0     | Repo and process   | Public repo, `process/` and `docs/log/` in place                        | First push succeeds                                                                   |
+| 1     | Goals              | Goals, non-goals, success criteria                                      | Every goal has a checkable criterion                                                  |
+| 2     | UX research        | Personas, insights                                                      | Every feature traces to an insight, every insight to a source                         |
+| 3     | Journeys and specs | Journeys, domain model, screen specs                                    | Every journey step points at a screen, every screen lists its warnings and fixes      |
+| 4     | PRD                | PRD                                                                     | User approves; every decision is reflected or superseded                              |
+| 5     | Design system      | Tokens, component inventory, customisation log, per-screen design notes | Every screen has design notes for each target width; every customisation has a reason |
+| 6     | Dev plan           | Ordered milestones with checks                                          | Every milestone has a check that can fail                                             |
+| 7     | Build              | Working software, screens designed in code as built                     | Each milestone's check passes and each screen passes design review                    |
 
 ## Protocols
 
 ### Question protocol
+
 1. Read every input file completely before asking anything.
 2. Summarise what was read in a few lines so the user can correct misreadings.
 3. Name the tensions found between inputs. Do not resolve them silently.
@@ -40,22 +41,26 @@ DEV-PLAN.md         the project's build milestones
 6. Repeat until the AI has no questions. Then say so plainly and wait for go.
 
 ### Decision protocol
+
 - Every decision gets an ID (D01, D02, ...) in `PLAN.md` the moment it is made, phrased so it can be checked later.
 - A superseded decision stays in the log with a note pointing to its replacement. Nothing is deleted.
 - Recommendations in questions are marked as such, so the log distinguishes what the user chose from what the AI suggested.
 
 ### Scope protocol
+
 - One folder is the boundary. Nothing outside is read or written.
 - Source material stays untouched. Derived artefacts live next to it, never over it.
 - Scope is fixed in the decision log. Features not in the log are out until the log changes.
 
 ### Phase protocol
+
 - Each phase has inputs, steps, outputs and an exit check written before the phase starts.
 - A phase is closed by writing `docs/log/NN-<phase>.md` with the template below.
 - If running a phase teaches something about the method, the lesson goes into that phase's playbook here, phrased generically. The project detail that taught it stays in the log.
 - The user says go between phases.
 
 ### Operating principles (Karpathy)
+
 - Don't assume, don't hide confusion, surface tradeoffs.
 - Minimum code that solves the problem.
 - Touch only what you must.

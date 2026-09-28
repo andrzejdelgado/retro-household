@@ -1,11 +1,14 @@
 # 06 — Design system
+
 Date: 2026-09-28
 
 ## Inputs
+
 - `PRD.md`, `docs/06-screen-specs.md` after D27 to D37, `docs/05-domain-model.md`, the inspiration image as a style hint (D21).
 - The shadcn/ui registry, listed through the Shadcn MCP tool at the time of writing (46 components).
 
 ## Steps taken (in order)
+
 1. User instruction at the start of the phase: shadcn components with orthodoxy, customising only when the UX cannot be achieved otherwise. Wrote this as principle 2 with a four-step ladder.
 2. Listed the registry so the inventory names only real components.
 3. Defined tokens: shadcn variables in oklch for the parent app (warm paper, warm ink, one teal accent), a dark set for the TV app, one additive warning token, six additive kid colour tokens. Fraunces for display, Inter for text, tabular figures on compared numbers. Tailwind type scale, no custom scale.
@@ -17,16 +20,20 @@ Date: 2026-09-28
 9. Applied: S17 to S20 added to the specs, navigation and S07, S09, S12, S13, S15 amended; Show and Household fields added to the model; J1 and J13 in the journeys; D38 to D44 logged, D09 marked superseded in part; the design system gained Geist, four screen notes, three shared components and a reference templates section; PRD stories 66 to 71 and the demo path updated.
 
 ## Decisions made
+
 None new in the log. Design choices recorded in the document: borders not shadows; one accent; Drawer on mobile and Sheet on desktop for every sheet-like surface; Popover not Tooltip for the why affordance; no chart library for the TV timeline.
 
 ## Outputs
+
 - `docs/07-design-system.md`
 - `process/06-design.md`
 - `docs/log/06-design.md`
 
 ## Exit check result
+
 All 23 screens have notes for mobile and desktop. The customisation log has no entries; both expected customisations are recorded as avoided with their replacements. Every inventory component is in the registry listing. Passed, pending user review of the tokens and fonts.
 
 ## What was learned
+
 - Reading the registry first changed the design: two customisations disappeared before anyone built them.
 - Design notes came out short because the specs already fixed copy, states and warnings. The phases divide cleanly when each one refuses to repeat the previous.

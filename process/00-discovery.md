@@ -1,14 +1,17 @@
 # 00 — Discovery (playbook)
 
 ## Purpose
+
 Turn a product idea and its source material into a decision log the whole project can be checked against, before any plan, PRD or code exists. Discovery ends when the AI has no questions left, not when the user runs out of patience.
 
 ## Inputs
+
 - The user's brief, in their own words.
 - Every file the user points at (research, practices, inspiration, prior specs). All of it, in full.
 - The user's stated constraints: stack, hosting, cost, deadline, scope boundary.
 
 ## Steps
+
 1. List every file in the project folder. Confirm the scope boundary with the user.
 2. Read every input completely. Do not ask a question that an input already answers.
 3. Write back a summary of the material in a few lines, so misreadings surface at once.
@@ -28,15 +31,18 @@ Turn a product idea and its source material into a decision log the whole projec
 10. Write `PLAN.md` (product paragraph, principles, decision log, scope in and out, phases with exit checks, working protocol, risks) and `docs/log/00-discovery.md`.
 
 ## Outputs
+
 - `PLAN.md` with a complete decision log.
 - `docs/log/00-discovery.md`.
 
 ## Exit check
+
 - The AI has no questions left.
 - Every user answer maps to a decision ID.
 - Every entity, surface and flow in the product has at least one decision covering it.
 
 ## Lessons
+
 - Reading every input before the first question removes a whole round of questions. The tensions section does more work than the questions: tensions are where the product changes.
 - The first batch should ask how the result will be demoed and who uses each surface. Both answers reshape architecture and are cheap for the user to give. Discovering them late costs a batch.
 - Each batch tends to uncover one fact that reshapes the data model. Stopping after two batches produces a wrong model. Expect four.

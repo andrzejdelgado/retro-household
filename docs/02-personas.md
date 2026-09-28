@@ -13,6 +13,7 @@ The three households were chosen to cover the product's three regimes: no screen
 **What they want.** A rhythm that holds on a tired Tuesday. To know what "zero screens" means when the phone is the only thing that stops crying in a queue. To keep their own phones out of Lily's sight without feeling policed. To see what changes at 2 and at 3 so the rules feel like a path, not a wall.
 
 **Jobs to be done.**
+
 - Set a weekday and weekend rhythm for a one-year-old and print it for the fridge and the nanny.
 - Adopt the adult rules (phones in a drawer, work stops at pick-up, seven hours of sleep) and make them visible to each other.
 - Set Wi-Fi hours that make the evening laptop unreachable.
@@ -31,6 +32,7 @@ The three households were chosen to cover the product's three regimes: no screen
 **What she wants.** Content she chose, on a schedule she set, with the switch-off decided by the clock and not by her. Two children with different rules and no fight over whose turn it is. Andrzej running the same rules without her explaining them each evening. Something on paper she can point at when Simona says everyone else has YouTube.
 
 **Jobs to be done.**
+
 - Create both kids with birthdates and PINs; get defaults for two different brackets in one go.
 - Build each kid's routine from defaults, adjust the after-school hour, print both.
 - Set up channels for Simona. Set up a short Shichida programme for Selena, read the warning the app raises for a child under 3, and decide.
@@ -51,6 +53,7 @@ The three households were chosen to cover the product's three regimes: no screen
 **What they want.** To manage three routines, three budgets and one TV without a spreadsheet. A week that is not the same every day. Ella's later slot not eating into Henry's, and Grace never in the room for either. A monthly review they actually do.
 
 **Jobs to be done.**
+
 - Three kids, three brackets, three sets of defaults.
 - Split Ella's week so Wednesday differs, clone Monday onto Tuesday and Thursday.
 - Stagger three TV windows within one afternoon, or accept a together slot for Henry and Ella on one programme and see what that does to Henry's budget.
