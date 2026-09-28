@@ -89,3 +89,20 @@ Decisions and deviations:
 - Manual allowances have days per week but no chosen days. The accumulator (M4) will count them on the first N weekdays, Monday first; recorded there.
 
 Check: lint, typecheck, format:check, 160 tests, build exit 0. Proves: C3.4, C4.1, C4.2, C6.2 (logic). Status: closed.
+
+## M4 — Accumulator, warnings, conflicts, viewing
+Date: 2026-09-28
+
+Steps taken (in order):
+1. Accumulator: planned minutes per weekday (placed TV minutes plus manual allowances on the first N weekdays), the planned week with days used and consecutive TV pairs, budget left from the viewing log with the weekly cap winning.
+2. Viewing: seconds logged to the host and every co-watcher, extending the open row per sitting; the per-kid log for S08.
+3. Conflicts: lanes per kid, overlaps per weekday with the younger kid first, acknowledgement check, and `canPlace` with refusal reasons against school, bedtime and the small hours.
+4. Warnings: W01 to W12 derived from the household with fixes as pure transformations, the dismissal key per subject, `visibleWarnings` applying dismissals and the global mute as a filter. W09 offers stagger, an earlier move that carries its refusal reason when disabled, and together.
+5. Tests: planned minutes and the week, budget with weekly cap winning and the zero-cap case, co-watch logging, every warning code triggering and clearing, two-kid and three-kid overlaps with a refused earlier move, dismissals and mute. 178 tests pass.
+
+Decisions and deviations:
+- D46 logged: a zero cap is not enforced by the TV; the window is the limit and minutes are overage. Without it D14 and D15 contradicted each other for the demo premise.
+- Manual allowances count on the first N weekdays, Monday first, since the allowance has days per week but no chosen days (S08). If this proves confusing in M7, the allowance gains a day set.
+- Every warning message is a consequence for the child, one sentence, then the fixes (spec §1 warning card).
+
+Check: lint, typecheck, format:check, 178 tests, build exit 0. Proves: C2.3, C2.4, C4.5, C5.1, C5.2, C5.5 (logic). Status: closed.
