@@ -13,7 +13,7 @@ Date: 2026-09-28
 6. Wrote `process/05-prd.md` (playbook) and this record. Committed and pushed; `PRD.md` itself is not in git.
 
 ## Decisions made
-None new. Two proposals awaiting the user's answer: the module sketch; the test list (content, bracket, routine, schedule, accumulator, warnings, conflicts, viewing in Vitest; UI, media, print and storage verified by the demo path).
+None new in the log. The user confirmed the module sketch and the test list (content, bracket, routine, schedule, accumulator, warnings, conflicts, viewing in Vitest; UI, media, print and storage verified by the demo path).
 
 ## Outputs
 - `PRD.md` (local only)
@@ -21,7 +21,7 @@ None new. Two proposals awaiting the user's answer: the module sketch; the test 
 - `docs/log/05-prd.md`
 
 ## Exit check result
-Pending user approval of the PRD, the module sketch and the test list.
+User approved the PRD, the module sketch and the test list on 2026-09-28, and asked for the UX eval findings to be applied; they were applied as D27 to D37 and the PRD was synced. Passed.
 
 ## What was learned
 - The user-story list surfaced two actors the specs served but never named as actors: the presenter and the parent standing at the television. Both got stories.

@@ -9,7 +9,7 @@ All stored entities live in the browser's IndexedDB behind one storage interface
 ### Household
 | Field | Type | Notes |
 |---|---|---|
-| name | string | Shown on printed pages |
+| name | string | Defaults to "Home" (D35); edited in Settings; shown on printed pages |
 | rules | HouseholdRule[] | See below |
 | wifiOffWindows | Window[] | Household-level. Windows in which Wi-Fi is off |
 | settings.warningsMuted | boolean | Global dismissal (D14) |
@@ -20,7 +20,7 @@ All stored entities live in the browser's IndexedDB behind one storage interface
 |---|---|---|
 | name | string | |
 | birthdate | date | Bracket is derived from it, never stored (D08) |
-| pin | 4 digits | TV app entry (D09). Stored as plain text; no security claim in v1 |
+| pin | 4 digits or null | TV app entry (D09). Optional until the kid's first channel is added (D31). Stored as plain text; no security claim in v1 |
 | colour | token | One of a fixed set; used for the kid's lane on the timeline and their channel tiles |
 | week | Record<Weekday, DayTypeId> | Which day type each weekday uses. Default: mon to fri → weekday, sat and sun → weekend (D12) |
 | dayTypes | DayType[] | |
@@ -33,7 +33,7 @@ All stored entities live in the browser's IndexedDB behind one storage interface
 | label | string | "Weekday", "Weekend", or a weekday name after a split |
 | blocks | RoutineBlock[] | Ordered by start |
 
-Splitting a week means creating a new DayType for one weekday and pointing `week[weekday]` at it. Cloning means copying `blocks` from one DayType into another. A DayType no weekday points at is deleted.
+Splitting a week means creating a new DayType for one weekday, as a copy of the one it had, and pointing `week[weekday]` at it. Copying a day onto other weekdays means pointing those weekdays at the source DayType, so days that are the same are one object edited in one place (D29). A DayType no weekday points at is deleted.
 
 ### RoutineBlock
 | Field | Type | Notes |
@@ -62,7 +62,8 @@ Long-form TV is special: its planned minutes come from the channel schedules, no
 | name | string | Short; a child may not read it |
 | icon | token | One of a small fixed set of simple glyphs, chosen by the parent |
 | windows | Window[] | When the channel is on air. Usually one |
-| programmes | Record<Weekday, ShowId[]> | Ordered playlist per weekday. Laid out from the window start using show durations |
+| programme | ShowId[] | The ordered playlist that plays on every day of the window. Laid out from the window start using show durations |
+| programmesByDay | Record<Weekday, ShowId[]> or null | Set only when the parent turns on "Vary by day" (D30); then it replaces `programme` for the days it lists |
 
 ### Window
 | Field | Type | Notes |
@@ -95,7 +96,7 @@ Long-form TV is special: its planned minutes come from the channel schedules, no
 | days | Weekday[] | |
 | start, end | time | |
 
-An acknowledged overlap is a "together slot" (D17). The timeline stops flagging it. Budgets are unaffected because each kid's own channel minutes already count.
+An acknowledged overlap is a "together slot" (D17). The timeline stops flagging it. Budgets are unaffected because each kid's own channel minutes already count. When the TV app starts playing inside an acknowledged overlap it opens the co-watch overlay once with the other acknowledged kids switched on (T05, D33).
 
 ### Dismissal (household)
 | Field | Type | Notes |
@@ -145,7 +146,7 @@ Per bracket, per day type: the default `RoutineBlock[]`. Infants (0-1) get the o
 | scheduledMinutes(kid, weekday) | channels | Sum of show durations laid out inside each window on that weekday, across the kid's channels |
 | plannedMinutes(kid, weekday) | allowances, scheduledMinutes | scheduledMinutes + sum of `games` and `schoolApps` minutesPerDay on days those apply |
 | plannedWeek(kid) | plannedMinutes over mon..sun | Total, days with any minutes, and consecutive-day pairs |
-| layout(channel, weekday) | window, programmes, shows | Shows placed back to back from window start. A show that would end after the window end is not placed and is flagged (W10). Remaining time is off-air |
+| layout(channel, weekday) | window, programme or programmesByDay, shows | Shows placed back to back from window start. A show that would end after the window end is not placed and is flagged (W10). Remaining time is off-air |
 | nowPlaying(channel, now) | layout, now | The show whose placed interval contains `now`, and the offset into it (C4.1). Null means off-air |
 | budgetLeft(kid, date) | cap, viewingLog | Daily: cap.minutesPerDay minus logged minutes today. Weekly: cap.minutesPerWeek minus logged minutes since Monday. The TV is off for the kid when either is at or below zero (D15) |
 | warnings(household) | everything above | See the catalogue |

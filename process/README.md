@@ -25,9 +25,9 @@ DEV-PLAN.md         the project's build milestones
 | 2 | UX research | Personas, insights | Every feature traces to an insight, every insight to a source |
 | 3 | Journeys and specs | Journeys, domain model, screen specs | Every journey step points at a screen, every screen lists its warnings and fixes |
 | 4 | PRD | PRD | User approves; every decision is reflected or superseded |
-| 5 | Design | Tokens, component inventory, screens | Every screen has mobile and desktop; every customisation has a reason |
+| 5 | Design system | Tokens, component inventory, customisation log, per-screen design notes | Every screen has design notes for each target width; every customisation has a reason |
 | 6 | Dev plan | Ordered milestones with checks | Every milestone has a check that can fail |
-| 7 | Build | Working software | Each milestone's check passes |
+| 7 | Build | Working software, screens designed in code as built | Each milestone's check passes and each screen passes design review |
 
 ## Protocols
 

@@ -32,3 +32,4 @@ Turn personas and insights into three documents the design and build phases can 
 - Writing the domain model before the journeys exposed model gaps (for example that a schedule needs per-weekday days, not only day types, when frequency rules exist) that journeys alone would have hidden.
 - The warning catalogue is the product's conscience. Deriving it from the source rules and giving each warning a fix produced most of the "forgiving" behaviour without a separate effort.
 - A single primary action per screen forces real prioritisation. Where it felt impossible, the screen was two screens.
+- Run a UX critique on the specs before the PRD, as a first-time user rather than as their author. It finds the silences: what happens when the user changes something, not what they see. Apply accepted findings as numbered decisions with the finding as source, so the next critique can tell drift from intent.

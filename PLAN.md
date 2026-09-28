@@ -47,6 +47,17 @@ Retro Household is a parent-facing web app for households with children aged 0 t
 | D24 | The five best-practice markdown files stay untouched. A structured content file inside the app is derived from them. Each default practice carries a one-line why, and sources appear on an in-app Sources page. |
 | D25 | Games: in v1 a manual allowance. The future device counts console time over Wi-Fi automatically. The data model marks each allowance as manual or device-reported from the start. |
 | D26 | Demo controls: mouse and keyboard for PIN entry, arrows and Enter as remote, Escape back to the PIN screen, Cmd+K for co-watch. A "load demo household" action seeds a household. |
+| D27 | S10: for a kid with no screen block in the selected day type or a zero cap, a new channel's days and times start empty with the hint "Set when this channel is on air", Save is disabled until both are set, and W05 shows at once. Source: ux-eval 2026-09-28 U1. |
+| D28 | Routine block times ripple: an end change moves the next block's start, a start change moves the previous block's end, blocks never overlap, the sleep block anchors the day and a change that would push past it is refused inline with the reason. Source: ux-eval 2026-09-28 U2. |
+| D29 | Copying a day onto other weekdays points those weekdays at the source day type. A distinct day type is a distinct object, and printing produces one page per day type headed with all its weekday names. Source: ux-eval 2026-09-28 U3. |
+| D30 | A channel holds one programme that plays on every day of its window. "Vary by day" is an opt-in that reveals a programme per weekday. Source: ux-eval 2026-09-28 U4. |
+| D31 | The kid PIN is optional at creation and is asked for inline on S09 when the first channel is added. Refines D09. Source: ux-eval 2026-09-28 U5. |
+| D32 | S11 has no screen-level primary action. Each warning card carries its fixes, and the first fix is that card's primary. Source: ux-eval 2026-09-28 U6. |
+| D33 | When the TV app starts playing inside an acknowledged overlap (together slot), the co-watch overlay opens once with the other acknowledged kids switched on; Done confirms. S11 says so under the together fix. Source: ux-eval 2026-09-28 U7. |
+| D34 | S03 gains a secondary action "Save and add another" that saves and reopens the screen empty. Source: ux-eval 2026-09-28 U10. |
+| D35 | S01 is removed. First run opens S03 with the product name and purpose sentence on top. The household is created with the default name "Home" on the first kid's save and renamed in Settings. "Load demo household" lives in Settings. Source: ux-eval 2026-09-28 U12. |
+| D36 | Returning visits open S04. First-run S03 hides the tab bar and has no back. Typed but unsaved fields do not survive a reload; C1.3 applies to saved data. Source: ux-eval 2026-09-28 U15. |
+| D37 | The budget bar has a fourth state, over by choice: once the parent has dismissed the warning for that subject, the numbers stay and the fill turns neutral. Source: ux-eval 2026-09-28 U16. |
 
 ## 4. Scope
 
@@ -88,22 +99,22 @@ Each phase has inputs, outputs and an exit check. A phase closes when the exit c
 - Inputs: everything above.
 - Steps: run the `to-prd` skill to synthesise the PRD without re-interviewing, save as `PRD.md` (gitignored, D22).
 - Outputs: `PRD.md`, `docs/log/05-prd.md`.
-- Exit check: the user approves the PRD, and every decision D01 to D26 is either reflected or explicitly superseded in it.
+- Exit check: the user approves the PRD, and every decision D01 to D37 is either reflected or explicitly superseded in it.
 
-### Phase 5 — Design system and screens
+### Phase 5 — Design system
 - Inputs: PRD, screen specs, inspiration image as a style hint.
-- Steps: define design tokens (colour, type, spacing, radius) as a shadcn theme, list which shadcn components each screen uses, log every customisation with its UX reason, design mobile screens first then desktop. Screens are defined as written short specs in the repo, with ocassinal low-fi image as guide.
-- Outputs: `docs/07-design-system.md`, static screen pages, `docs/log/06-design.md`.
-- Exit check: every screen spec has a mobile and a desktop specs, and the customisation log has no entry without a reason.
+- Steps: define design tokens (colour, type, spacing, radius) as a shadcn theme, list which shadcn components each screen uses, log every customisation with its UX reason, and write the design notes each screen needs beyond its spec (layout at 375px and desktop, states worth a sketch), with an occasional low-fi image as a guide. Screens are not designed as standalone artefacts in this phase; they are designed in code while they are built, in Phase 7.
+- Outputs: `docs/07-design-system.md` (tokens, component inventory, customisation log, per-screen design notes), `docs/log/06-design.md`.
+- Exit check: every screen spec has design notes for mobile and desktop, and the customisation log has no entry without a reason.
 
 ### Phase 6 — Dev plan
-- Inputs: PRD, designs, domain model.
-- Steps: order the build into milestones each with a verifiable check (tests in Vitest, a demo step, or a build passing), starting with scaffold, storage interface, content model and accumulator logic, then parent screens, then TV app, then print.
+- Inputs: PRD, design system, domain model.
+- Steps: order the build into milestones each with a verifiable check (tests in Vitest, a demo step, or a build passing), starting with scaffold, storage interface, content model and accumulator logic, then parent screens, then TV app, then print. Every milestone that ships a screen carries a design step: build it from the design system, review it at 375px and desktop against its spec and design notes, run a design critique, log customisations, then close.
 - Outputs: `DEV-PLAN.md`, `docs/log/07-dev-plan.md`.
 - Exit check: every milestone has a check that can fail, and the first milestone can start without any open question.
 
 ### Phase 7 — Build
-Governed by `DEV-PLAN.md`. Each milestone closes with its check passing and a short log entry in `docs/log/08-build.md`.
+Governed by `DEV-PLAN.md`. Screens are designed in code as they are built: the milestone is not done until the screen passes its design review at both widths. Each milestone closes with its check passing and a short log entry in `docs/log/08-build.md`.
 
 ## 6. Working protocol
 

@@ -7,17 +7,17 @@ Persona P2. Criteria C1.2, C1.4.
 
 | Step | Screen | User | System |
 |---|---|---|---|
-| 1 | S01 Welcome | Opens the app for the first time | Shows one sentence of purpose and one action: name the household |
-| 2 | S01 | Types "Home" or any name, continues | Creates the Household with all nine major rules enabled and default Wi-Fi windows |
-| 3 | S03 Add kid | Enters Simona, birthdate, a PIN, picks a colour | Derives bracket 4-5, shows it live under the birthdate |
-| 4 | S05 Kid | Lands on Simona's page | Routine, allowances and an empty channel list are prefilled from the 4-5 content rows. The budget bar reads 0 of 30 min today |
+| 1 | S03 Add kid | Opens the app for the first time | Shows the product name, one sentence of purpose and "Add your first child". No tab bar, no back |
+| 2 | S03 | Enters Simona, birthdate and a colour; leaves the PIN empty | Derives bracket 4-5, shows it live under the birthdate |
+| 3 | S03 | Saves | Creates the Household named "Home" with all nine major rules enabled and default Wi-Fi windows, then Simona |
+| 4 | S05 Kid | Lands on Simona's page | Routine, allowances and an empty channel list are prefilled from the 4-5 content rows. The budget bar reads 0 of 30 min today. A dismissable line reads "Set up from recommended practice for age 4. Change anything." |
 
 ## J2 — Add the second kid
 Persona P2. Criteria C1.2, C5.4.
 
 | Step | Screen | User | System |
 |---|---|---|---|
-| 1 | S04 Home | Taps add kid | |
+| 1 | S03 | Taps "Save and add another" after Simona, or add kid on S04 Home | An empty S03 |
 | 2 | S03 Add kid | Enters Selena, birthdate, PIN, colour | Bracket 1-2, budget 0 |
 | 3 | S05 Kid | Lands on Selena's page | Routine prefilled from the 1-2 rhythm. Screen time shows every technology closed with the age it opens. Channels section says none and explains a 1-year-old has no screen budget, with the add action still available |
 
@@ -28,7 +28,7 @@ Persona P2. Criteria C1.1, C2.1, C2.5, C3.1, C3.3.
 |---|---|---|---|
 | 1 | S05 Kid | Opens Simona's routine | |
 | 2 | S06 Routine | Sees the weekday timeline prefilled: wake, school (away), free play, chores, dinner, outside, wind-down | Blocks carry the practice's icon; tapping one shows its why (C2.5) |
-| 3 | S06 | Drags the school block's end to 17:00 because of the class | Free play shrinks; the screen block moves after 17:00 and raises W06 after-dinner if it now ends past dinner, with the fix "shorten to end at dinner" |
+| 3 | S06 | Sets the school block's end to 17:00 because of the class | Free play's start ripples to 17:00 and it shrinks; the screen block moves after 17:00 and raises W06 after-dinner if it now ends past dinner, with the fix "shorten to end at dinner" |
 | 4 | S06 | Applies the fix | Window shortened, warning gone |
 | 5 | S07 Practices | Adds "Boredom rule, 15 min" from the library to the afternoon | A block appears with the practice's title and why |
 | 6 | S14 Print | Taps print, chooses weekday | Print preview shows one page: name, day, timeline. Prints via the browser |
@@ -40,8 +40,8 @@ Persona P2. Criterion C3.4.
 |---|---|---|---|
 | 1 | S06 Routine | Opens the day switcher, chooses "Split weekdays" | Weekday becomes five DayTypes mon to fri, each a copy of the old weekday |
 | 2 | S06 | Edits Friday: school ends 16:00, no class | Only Friday changes |
-| 3 | S06 | On Monday chooses "Copy to…" and ticks tue, wed, thu | Three DayTypes replaced by copies of Monday |
-| 4 | S14 Print | Prints | One page per distinct day: mon (covers mon to thu, printed once with the four day names in the header), fri, weekend |
+| 3 | S06 | On Monday chooses "Copy to…" and ticks tue, wed, thu | Tue, Wed and Thu now point at Monday's day type and the three orphaned day types are deleted. The day switcher shows one tab "Mon · Tue · Wed · Thu" |
+| 4 | S14 Print | Prints | One page per day type: "Mon · Tue · Wed · Thu", Fri, Weekend |
 
 ## J5 — Set an allowance past the cap
 Persona P2. Criteria C2.2, C2.3, C2.4, C5.3.
@@ -49,9 +49,9 @@ Persona P2. Criteria C2.2, C2.3, C2.4, C5.3.
 | Step | Screen | User | System |
 |---|---|---|---|
 | 1 | S08 Screen time | Sees long-form 30 min a day (from the schedule), games closed until 6, school apps closed until 6, and the closed list | Budget bar: today 30 of 30, week 120 of 120 |
-| 2 | S08 | Extends Simona's channel window on the TV section to 45 min | W01 daily-cap appears under the field: "Simona would have 45 minutes a day. The recommended ceiling at 4 is 30." Fixes: shorten to 30. The budget bar turns to the over state |
-| 3 | S08 | Dismisses the warning | The warning collapses; the bar still shows 45 of 30 |
-| 4 | S08 | Saves | Saved. Nothing blocked |
+| 2 | S10 Channel | Opens Simona's channel from the link on the long-form row and extends its window to 45 min | W01 daily-cap appears under the field: "Simona would have 45 minutes a day. The recommended ceiling at 4 is 30." Fixes: shorten to 30. The budget bar turns to the over state |
+| 3 | S10 | Dismisses the warning | The warning collapses; the bar still shows 45 of 30 |
+| 4 | S10 | Saves | Saved. Nothing blocked |
 | 5 | S15 Settings | Turns on "Hide all warnings" | Every warning hidden; budget bars keep their numbers |
 
 ## J6 — Channels and a programme
@@ -59,10 +59,10 @@ Persona P2. Criteria C4.2, C5.4.
 
 | Step | Screen | User | System |
 |---|---|---|---|
-| 1 | S09 Channels | On Simona, adds a channel "Stories" with an icon | Window defaults from Simona's screen slot: days mon, wed, fri, sun (4-5 bracket: max 4 days, never two in a row), 17:00 to 17:30 after the class fix |
+| 1 | S09 Channels | On Simona, adds a channel "Stories" with an icon; S09 first asks for Simona's PIN since she has none | Window defaults from Simona's screen slot: days mon, wed, fri, sun (4-5 bracket: max 4 days, never two in a row), 17:00 to 17:30 after the class fix |
 | 2 | S12 Library | Adds four video files | Duration and a poster frame read on import |
-| 3 | S10 Channel | Builds Monday's programme by adding two shows | Layout preview: 17:00 show A (12 min), 17:12 show B (15 min), 17:27 off-air. A third show of 20 min is refused with W10 and the fix "remove" or "extend window" |
-| 4 | S10 | Copies Monday to wed, fri, sun | Done |
+| 3 | S10 Channel | Builds the programme by adding two shows | Layout preview: 17:00 show A (12 min), 17:12 show B (15 min), 17:27 off-air. A third show of 20 min is refused with W10 and the fix "remove" or "extend window" |
+| 4 | S10 | Leaves "Vary by day" off | The same programme plays on mon, wed, fri and sun |
 | 5 | S09 | On Selena, adds a channel "Shichida" | W05 not-yet-open: "Selena is 1. The recommended screen time under 3 is none. Anything scheduled here counts as overage from the first minute." Fixes: remove; keep. Ilona keeps it |
 | 6 | S10 | Sets a 15-minute window at 10:00 on weekdays and one show | W01 daily-cap and W02 weekly-cap follow, dismissible |
 
@@ -128,7 +128,7 @@ Criterion C1.3 and demo support.
 
 | Screen | Journeys |
 |---|---|
-| S01 | J1 |
+| S01 | removed (D35) |
 | S03 | J1, J2 |
 | S04 | J2, J12 |
 | S05 | J1, J2, J3, J10, J11 |
@@ -136,7 +136,7 @@ Criterion C1.3 and demo support.
 | S07 | J3 |
 | S08 | J5 |
 | S09 | J6 |
-| S10 | J6 |
+| S10 | J5, J6 |
 | S11 | J7 |
 | S12 | J6 |
 | S13 | J8 |
