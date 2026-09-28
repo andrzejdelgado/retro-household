@@ -89,7 +89,7 @@ This goal belongs to the project, not the product.
 
 ## Non-goals for v1
 
-- Accounts, sign-in, OAuth.
+- Accounts, sign-in, OAuth. The parent passcode (D40) is a local gate stored in the browser, not an account.
 - Sync between devices, home server, any database outside the browser.
 - Wi-Fi enforcement. Wi-Fi hours are documented and printed, not applied.
 - Counting console or school-app time automatically. These are manual allowances.
@@ -104,7 +104,7 @@ This goal belongs to the project, not the product.
 
 The demo on one computer follows this path. Each step names the criteria it exercises.
 
-1. Open the empty app, create the household and two kids with birthdates and PINs. (C1.2, C1.4)
+1. Open the empty app, set a parent passcode, create two kids with birthdates; leave the PINs empty. (C1.2, C1.4)
 2. Accept default routines for both, print the weekday page for each. (C1.1, C2.1, C3.1)
 3. Change one allowance past the cap, see the warning and its fix, dismiss it, save anyway. (C2.2, C2.3, C2.4, C5.3)
 4. Set up channels for the 4-year-old. Add a channel for the 1-year-old with a Shichida programme, read the under-3 warning, dismiss it, save. (C2.2, C2.3, C5.4)
@@ -115,4 +115,5 @@ The demo on one computer follows this path. Each step names the criteria it exer
 9. Open the TV app, enter a PIN, tune in mid-show, then tune in outside the window. (C4.1, C4.3, C4.4, C4.6, C4.7)
 10. Press Cmd+K, add the 1-year-old as co-watcher, see her zero budget go into overage in both viewing logs. (C4.5, C5.4)
 11. Advance the mocked date past a birthday, show the bracket change. (C6.1)
-12. Switch to mobile width in device mode and repeat steps 1 to 5. (C7.1, C7.3)
+12. Open the bell, clear the warnings list; open the TV tab's Channels view and see both kids' channels with their on-air state; lock the app from Settings and unlock it. (C2.2, C2.4, C4.4)
+13. Switch to mobile width in device mode and repeat steps 1 to 5. (C7.1, C7.3)

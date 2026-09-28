@@ -14,6 +14,7 @@ All stored entities live in the browser's IndexedDB behind one storage interface
 | wifiOffWindows | Window[] | Household-level. Windows in which Wi-Fi is off |
 | settings.warningsMuted | boolean | Global dismissal (D14) |
 | settings.demoClock | datetime or null | Demo-only override of "now" (C4.1, C6.1) |
+| passcode | 4 to 6 digits | Opens the parent app once per browser session (D40). Stored as plain text; no security claim in v1. Forgetting it means resetting everything |
 
 ### Kid
 | Field | Type | Notes |
@@ -78,6 +79,8 @@ Long-form TV is special: its planned minutes come from the channel schedules, no
 | durationSec | number | Read from the file's metadata on import |
 | fileKey | blob key | The video blob in IndexedDB (D18) |
 | posterKey | blob key | A frame captured on import, used on channel tiles |
+| category | `stories` `films` `nature` `music` `learning` `family` `other` | Fixed list, chosen on import (D43) |
+| brackets | Bracket range | The one-year brackets the video suits, set with the range picker (D43). A filter, never a block |
 
 ### ViewingLog (per kid)
 | Field | Type | Notes |

@@ -7,7 +7,8 @@ Persona P2. Criteria C1.2, C1.4.
 
 | Step | Screen | User | System |
 |---|---|---|---|
-| 1 | S03 Add kid | Opens the app for the first time | Shows the product name, one sentence of purpose and "Add your first child". No tab bar, no back |
+| 0 | S18 Passcode | Opens the app for the first time, chooses a parent passcode and repeats it | Stores the passcode, opens S03 (D40) |
+| 1 | S03 Add kid | Arrives from S18 | Shows the product name, one sentence of purpose and "Add your first child". No tab bar, no back |
 | 2 | S03 | Enters Simona, birthdate and a colour; leaves the PIN empty | Derives bracket 4-5, shows it live under the birthdate |
 | 3 | S03 | Saves | Creates the Household named "Home" with all nine major rules enabled and default Wi-Fi windows, then Simona |
 | 4 | S05 Kid | Lands on Simona's page | Routine, allowances and an empty channel list are prefilled from the 4-5 content rows. The budget bar reads 0 of 30 min today. A dismissable line reads "Set up from recommended practice for age 4. Change anything." |
@@ -60,7 +61,7 @@ Persona P2. Criteria C4.2, C5.4.
 | Step | Screen | User | System |
 |---|---|---|---|
 | 1 | S09 Channels | On Simona, adds a channel "Stories" with an icon; S09 first asks for Simona's PIN since she has none | Window defaults from Simona's screen slot: days mon, wed, fri, sun (4-5 bracket: max 4 days, never two in a row), 17:00 to 17:30 after the class fix |
-| 2 | S12 Library | Adds four video files | Duration and a poster frame read on import |
+| 2 | S12 Library | Adds four video files in the add dialog, sets category Stories and ages 3 to 6 | Duration and a poster frame read on import; the grid shows category and age range (D43) |
 | 3 | S10 Channel | Builds the programme by adding two shows | Layout preview: 17:00 show A (12 min), 17:12 show B (15 min), 17:27 off-air. A third show of 20 min is refused with W10 and the fix "remove" or "extend window" |
 | 4 | S10 | Leaves "Vary by day" off | The same programme plays on mon, wed, fri and sun |
 | 5 | S09 | On Selena, adds a channel "Shichida" | W05 not-yet-open: "Selena is 1. The recommended screen time under 3 is none. Anything scheduled here counts as overage from the first minute." Fixes: remove; keep. Ilona keeps it |
@@ -124,6 +125,17 @@ Criterion C1.3 and demo support.
 | 1 | S15 Settings | Taps "Load demo household" | Asks to confirm replacing current data. Seeds Miranda and John's household (P3) with three kids, channels, a library of short clips, rules |
 | 2 | S04 Home | | Three kid cards with budgets and a warning count |
 
+## J13 — Warnings list and lock
+Criteria C2.2, C2.4.
+
+| Step | Screen | User | System |
+|---|---|---|---|
+| 1 | S04 Home | Sees the bell with "3" on it, taps it | |
+| 2 | S17 Warnings | Reads three cards grouped under Selena and Simona, applies one fix, dismisses one | The count drops to 1; the dismissed warning stays hidden across reload |
+| 3 | S20 Household channels | Opens the TV tab, Channels view, All | Sees Simona's "Stories" on air with the current show and Selena's "Shichida" off air until tomorrow 10:00 |
+| 4 | S15 Settings | Taps "Lock now" | S18 in enter mode; the TV app is unaffected |
+| 5 | S18 | Taps "Forgot the passcode?" | S19 explains the reset and offers Back |
+
 ## Journey to screen coverage
 
 | Screen | Journeys |
@@ -143,6 +155,10 @@ Criterion C1.3 and demo support.
 | S14 | J3, J4, J8 |
 | S15 | J5, J11, J12 |
 | S16 | reached from S13 and S07 |
+| S17 | J13 |
+| S18 | J1, J13 |
+| S19 | J13 |
+| S20 | J13 |
 | T01 to T05 | J9, J10 |
 
 Every journey step points at a screen. Every screen appears in at least one journey.

@@ -33,3 +33,4 @@ Give the build everything it needs to design screens in code without inventing a
 - Checking the registry before writing the inventory turned two expected customisations into stock parts: a navigation element is not a tab component, and a two-thumb slider is a contiguous range by nature.
 - "Borders, not shadows" and "one accent" decided in the tokens removed most later polish debates before they started.
 - Design notes per screen are the contract for design-in-code. Without them, "build it and review" has nothing to review against.
+- Ask for reference templates before writing the design system, not after. Mapping each template to a screen, and naming what is taken and what is left, is a cheap way to settle desktop layouts; the collisions it surfaces (a wizard, a login, a notifications page) are product decisions that belong in the log, not in the build.

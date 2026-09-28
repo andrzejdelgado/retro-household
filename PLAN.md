@@ -29,7 +29,7 @@ Retro Household is a parent-facing web app for households with children aged 0 t
 | D06 | v1 demos on one computer. Mobile layouts are checked through the browser's device mode. No cross-device sync in v1. |
 | D07 | Parent app is designed mobile-first, then desktop. The TV app is the only kid-facing surface. |
 | D08 | Eight one-year age brackets: 0-1, 1-2, 2-3, 3-4, 4-5, 5-6, 6-7, 7-8. Best-practice content written in wider brackets is mapped onto these. A child's bracket is computed from birthdate and everything depending on it updates automatically on the birthday or when the parent edits routines, schedules or rules. |
-| D09 | Kid profile: name, birthdate, 4-digit PIN for the TV app. No login for anyone. No parent PIN in v1. |
+| D09 | Kid profile: name, birthdate, 4-digit PIN for the TV app. No login for anyone. No parent PIN in v1. Superseded in part by D40 (parent passcode). |
 | D10 | Each kid's tech privileges are independent. No "stricter rule wins" for siblings. |
 | D11 | v1 features: (1) routines per kid with printable one-page PDF per day type, (2) Wi-Fi hours, (3) TV schedule with up to 4 channels per kid, each channel with a start and end time, (4) household major rules with a printable rules page that also carries Wi-Fi hours and TV hours. |
 | D12 | Day types default to weekday and weekend day. A parent can split into Monday to Sunday and clone one day onto another. Routines and TV schedules are per kid; Wi-Fi hours are household-level. |
@@ -58,6 +58,13 @@ Retro Household is a parent-facing web app for households with children aged 0 t
 | D35 | S01 is removed. First run opens S03 with the product name and purpose sentence on top. The household is created with the default name "Home" on the first kid's save and renamed in Settings. "Load demo household" lives in Settings. Source: ux-eval 2026-09-28 U12. |
 | D36 | Returning visits open S04. First-run S03 hides the tab bar and has no back. Typed but unsaved fields do not survive a reload; C1.3 applies to saved data. Source: ux-eval 2026-09-28 U15. |
 | D37 | The budget bar has a fourth state, over by choice: once the parent has dismissed the warning for that subject, the numbers stay and the fill turns neutral. Source: ux-eval 2026-09-28 U16. |
+| D38 | The shadcnuikit.com templates in `templates/` are layout references only. Screens are rebuilt from the official shadcn registry; no kit source enters the repository. |
+| D39 | Text face is Geist; display face is Fraunces. |
+| D40 | A parent passcode of 4 to 6 digits, set on first run and stored in the browser, opens the parent app once per browser session and after "Lock now". Forgetting it means resetting everything; no recovery exists. The TV app is not gated by it. Supersedes the "no login, no parent PIN" part of D09. |
+| D41 | S17 Warnings lists every active warning in the household with its fixes and dismiss, opened from a bell with the count in the top bar. No "mark all as read". |
+| D42 | The TV tab holds three views: Timeline (S11), Channels (S20, a household view with a tab per kid and on-air state per tile) and Library (S12). S09 per kid stays reachable from S05. |
+| D43 | A show has a category from a fixed list (Stories, Films, Nature, Music, Learning, Family videos, Other) and an age range in one-year brackets. The library filters by both. |
+| D44 | Desktop layouts follow the reference grids: the routine as time rows by day-type columns, the TV timeline as time rows by kid columns. Practices and rules are picked as selectable tiles with "Add (n selected)". |
 
 ## 4. Scope
 
@@ -99,7 +106,7 @@ Each phase has inputs, outputs and an exit check. A phase closes when the exit c
 - Inputs: everything above.
 - Steps: run the `to-prd` skill to synthesise the PRD without re-interviewing, save as `PRD.md` (gitignored, D22).
 - Outputs: `PRD.md`, `docs/log/05-prd.md`.
-- Exit check: the user approves the PRD, and every decision D01 to D37 is either reflected or explicitly superseded in it.
+- Exit check: the user approves the PRD, and every decision D01 to D44 is either reflected or explicitly superseded in it.
 
 ### Phase 5 — Design system
 - Inputs: PRD, screen specs, inspiration image as a style hint.

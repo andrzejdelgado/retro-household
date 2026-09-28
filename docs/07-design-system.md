@@ -68,9 +68,9 @@ No warning or destructive token is used on the TV app. Nothing on it is red or a
 | Role | Font | Notes |
 |---|---|---|
 | Display | Fraunces (variable, optical size) via next/font | Screen titles, kid names in headers, printed page headers. Weight 500 to 600, optical size follows size |
-| Body and UI | Inter via next/font | Everything else. `font-feature-settings: "tnum"` on any number a parent compares: budget bar, layout preview, timelines |
-| TV app | Inter | Never under 32px at 1080p (R8) |
-| Print | Fraunces for headers, Inter for rows | Never under 12pt (C3.3) |
+| Body and UI | Geist via next/font | Everything else. `font-feature-settings: "tnum"` on any number a parent compares: budget bar, layout preview, timelines |
+| TV app | Geist | Never under 32px at 1080p (R8) |
+| Print | Fraunces for headers, Geist for rows | Never under 12pt (C3.3) |
 
 Type scale, parent app, from the Tailwind defaults so no custom scale exists: `text-sm` 14px captions and why lines, `text-base` 16px body and inputs, `text-lg` 18px card titles, `text-2xl` 24px screen titles in Fraunces, `text-4xl` 36px only for the first-run heading. Line height 1.5 for body, 1.2 for display.
 
@@ -103,6 +103,9 @@ Every interactive element on every screen maps to a stock component. Where two s
 | Empty state | `Card` with a title, one sentence, and one `Button` | Same shape on every screen |
 | Why affordance | `Popover` opened from a `Button variant="ghost" size="icon"` with the info icon | Popover, not Tooltip, so it works on touch and can hold a link to S16 |
 | Demo clock banner | `Alert` at the top of the page, `variant="default"` | Visible on every parent screen while set |
+| Top bar | A `header` with the title and a `Button variant="ghost" size="icon"` bell carrying a `Badge` with the warning count | Opens S17. The only header control |
+| Selection tiles | `ToggleGroup type="multiple"` of `Card`-sized items, each a `ToggleGroupItem` with an icon, title and a line; a pinned `Button` "Add (n selected)" | Practices (S07) and rules (S13), from the onboarding reference (D44) |
+| Schedule grid (desktop) | A CSS grid inside `ScrollArea`: time rows, one column per day type (S06) or per kid (S11); blocks and windows as `Card`s in the cells | From the bookings reference (D44). No calendar library |
 
 ### Per-screen components
 
@@ -117,11 +120,15 @@ Every interactive element on every screen maps to a stock component. Where two s
 | S09 Channels | `Card` per channel, `Button` add channel, `InputOTP` inline for the PIN ask (D31) |
 | S10 Channel editor | `Input` name, `ToggleGroup type="single"` for the icon picker, `ToggleGroup type="multiple"` for the seven weekdays, two `Input type="time"`, `Switch` "Vary by day", a list of `Card` rows with the layout preview in `tnum` figures, `Drawer` or `Sheet` holding the library picker, `Button` save |
 | S11 TV timeline | Day switcher, TV timeline, warning cards, `Button variant="link"` open library |
-| S12 Library | `Input type="file" multiple accept="video/*"` behind a `Button`, `Progress` per importing file, `Table` or `Card` list, `Button variant="ghost"` delete with `AlertDialog` when allowed |
+| S12 Library | `ToggleGroup type="single"` category tiles, the bracket range `Slider` in a `Collapsible` for the age filter, a grid of `Card`s with `AspectRatio` posters and `Badge`s, add in a `Dialog` (desktop) or `Drawer` (mobile) holding `Input type="file" multiple accept="video/*"` inside a dashed drop zone, `Input` title, `Select` category, the range `Slider`; `Progress` per importing file; `Button variant="ghost"` delete with `AlertDialog` when allowed |
 | S13 Rules | `Switch` per rule, `Input` plus `Button` for a custom rule, the bracket range picker, `Card` rows for Wi-Fi windows with `Input type="time"` pairs and weekday `ToggleGroup`, `Button` print |
 | S14 Print | `Select` for the page picker on mobile, `RadioGroup` on desktop, a preview `Card` at page proportions, `Button` print |
 | S15 Settings | `Input` household name, `Switch` hide all warnings, `Input type="datetime-local"` demo clock with `Button variant="ghost"` clear, `Button variant="secondary"` load demo household behind `AlertDialog`, `Button variant="destructive"` reset behind `AlertDialog`, `Button variant="link"` sources |
 | S16 Sources | `Accordion` grouped by practice file, plain links |
+| S17 Warnings | Warning cards under kid headings, `Separator` between groups, `Button variant="link"` to the owning screen |
+| S18 Passcode | `Card`, `InputOTP` with six slots (four to six digits), `Button` continue, `Button variant="link"` forgot |
+| S19 Forgot passcode | `Card`, `Button variant="secondary"` back, `Button variant="destructive"` behind `AlertDialog` |
+| S20 Household channels | `Tabs` per kid, a grid of `Card` tiles with `Badge` on air or off air, an add tile as a dashed `Card` with a `Button variant="ghost"` |
 | T01 PIN | `InputOTP` at TV scale, an on-screen numpad of `Button size="lg"` |
 | T02 Picker | Up to four `Card`s as tiles with `AspectRatio` 16:9 posters; off-air tiles use `--muted` and a lucide power-off icon |
 | T03 Playback | A `video` element; the channel badge on entry is a `Badge` at TV scale that fades |
@@ -163,15 +170,15 @@ Desktop: cards in a two-column grid inside the 720px column. Add kid moves into 
 
 ### S05 Kid overview
 Mobile: header with the name in Fraunces `text-2xl`, age and bracket, "PIN 4821" or "No PIN yet" in muted, an edit link. The first-visit `Alert` under the header. Four cards in the spec's order, each with a title, one line of status, and a chevron; the whole card is the tap target. Budget bar pinned.
-Desktop: the four cards in the centre column; the budget card in the right column with the weekday table open.
+Desktop: a left section nav (Profile, Routine, Screen time, TV, Print) at 200px with the selected section's content beside it, following the settings reference; the budget card in the right column with the weekday table open.
 
 ### S06 Routine
 Mobile: day switcher strip under the title, scrolling inside itself. Timeline rows: time range in `tnum` on the left at 64px, icon, title, chevron. Gaps as dashed separators with a ghost add. The screen block shows "TV window follows this slot" in `text-sm`. Add block is a primary button pinned above the budget bar. Editing opens a `Drawer` with two time inputs side by side, title, note, and the why line if any.
-Desktop: the timeline in the centre column; editing opens a `Sheet` on the right instead of a drawer; the budget card sits below it in the right column.
+Desktop: the schedule grid, time rows from 06:00 to 21:00 and one column per day type, blocks as cards in the cells in the kind's icon and title; the day switcher becomes the column headers; editing opens a `Sheet` on the right; the budget card sits in the right column (D44).
 
 ### S07 Practices library
-Mobile: domain `Tabs` strip. Practice cards with the title, duration in muted, the why line, and a small add button at the right. Already-added ones show a check icon in primary instead of the button. The "Show all ages" `Switch` sits at the top right of the list.
-Desktop: cards in two columns. Same otherwise.
+Mobile: domain `Tabs` strip. Practices as selection tiles in a single column: title, duration in muted, the why line; a selected tile shows the primary border and a check. Already-added ones are disabled with the check. "Add (n selected)" pinned above the budget bar. The "Show all ages" `Switch` sits at the top right of the list.
+Desktop: tiles in a three-column grid, the onboarding reference layout. Same otherwise.
 
 ### S08 Screen time
 Mobile: the cap sentence as the first paragraph with its why affordance. One `Card` per technology instead of a table: name, depth line, then either the two controls side by side or a `Badge` "opens at 6". Long-form TV shows "Set by the TV schedule" and a link to S09. The viewing log as a compact list below a heading. Budget bar pinned; on focus it becomes the header chip.
@@ -187,14 +194,14 @@ Desktop: the same sections in the centre column; the library picker as a `Sheet`
 
 ### S11 TV timeline
 Mobile: day switcher over seven short weekday tabs. The timeline in a `ScrollArea` that scrolls horizontally inside itself, 15:00 to 20:00 by default, lane height 44px, kid name at the left edge of each lane, windows as rounded bars with the channel icon, hatched routine regions behind. Warning cards stacked under it, each with its fixes; the first fix of each card is that card's primary. "Open library" as a link at the bottom. Nothing else.
-Desktop: the timeline fits without scrolling in the 720px column; warning cards to its right in the right column.
+Desktop: the schedule grid, time rows from 15:00 to 20:00 and one column per kid headed with the kid's name and colour, windows as cards in the cells with the channel icon, routine regions hatched behind; warning cards in the right column (D44).
 
 ### S12 Library
-Mobile: add videos as the primary button at the top; while importing, a `Card` per file with its name and a `Progress`. The list: poster thumbnail 64px wide, title, duration in `tnum`, "Used by Stories" in muted, a ghost delete that is disabled with its reason when the show is in use.
-Desktop: a `Table` with poster, title, duration, used by, actions.
+Mobile: category tiles in a horizontally scrolling strip, the age filter as a collapsed row under it, then a two-column grid of poster cards with the title, duration in `tnum`, and small badges for category and ages; "Used by Stories" in muted. Add videos as the primary button at the top opening the `Drawer`. While importing, a `Card` per file with its name and a `Progress`.
+Desktop: the POS reference layout without the cart: category tiles in a row, a five-column grid of poster cards, add in a `Dialog` with the drop zone, title, category and age range.
 
 ### S13 Rules
-Mobile: nine rule rows, each a `Switch` at the left, the title, and the why line under it; the row is the click target. A custom rule `Input` with an add button under the list, and the bracket range `Slider` revealed only after the parent starts typing. Wi-Fi off windows as `Card` rows: weekday cells and two time inputs; add window as a secondary button. Print rules page as the primary button at the bottom.
+Mobile: nine rules as selection tiles in a single column, the title and the why line, selected when on; the tile is the click target. A custom rule `Input` with an add button under the list, and the bracket range `Slider` revealed only after the parent starts typing. Wi-Fi off windows as `Card` rows: weekday cells and two time inputs; add window as a secondary button. Print rules page as the primary button at the bottom.
 Desktop: rules and Wi-Fi side by side in two columns of the centre column.
 
 ### S14 Print
@@ -238,3 +245,34 @@ A `Dialog` at 720px wide over the dimmed picture. Title at 40px. One row per oth
 - Colour never carries meaning alone: budget states also change the numbers' wording ("over by 15 min"), off-air tiles carry the power-off icon, disabled fixes carry their reason.
 - Keyboard: every parent screen completes by keyboard; the TV app is keyboard first.
 - `prefers-reduced-motion` respected everywhere.
+
+### S17 Warnings
+Mobile: warning cards under a heading per kid in the kid's colour, then "Household". Each card as in §1 with a link "Open" to the owning screen. The empty state is one line. Desktop: the same list in the centre column, following the notifications reference without its search, filters and "mark all as read".
+
+### S18 Passcode
+Mobile: product name in Fraunces `text-4xl`, one sentence, a `Card` with the `InputOTP` centred and Continue full width; in set mode the card shows "Choose a parent passcode" then "Repeat it" as two steps in the same card. "Forgot the passcode?" as a link under the card in enter mode. Desktop: the login reference's right column only, 420px centred, no image panel, no providers, no sign-up line.
+
+### S19 Forgot passcode
+Mobile and desktop: one `Card`, two sentences, Back as a secondary button and "Reset everything" as a destructive button, following the forgot-password reference's shape without an email field.
+
+### S20 Household channels
+Mobile: kid `Tabs` strip, then a single column of channel tiles: icon at 40px, name, kid dot, window summary, and the on-air or off-air `Badge` with its line; the add tile at the end of each kid's section. Desktop: the tables reference layout: kid tabs in a row, tiles in a four-column grid.
+
+## 9. Reference templates
+
+The templates in `templates/` (shadcnuikit.com) are layout references only (D38). Each screen below names its reference and what is taken and left. Nothing is copied from the kit; every layout is rebuilt from the registry with the tokens in section 2.
+
+| Screen | Reference | Taken | Left |
+|---|---|---|---|
+| S04 Home | HR dashboard | Sidebar shell, header, stat-card style for kid cards | Charts, gauge, KPI deltas, date range, download |
+| S05 Kid overview (desktop) | Settings page | Left section nav with the form beside it | Avatar upload, email, bio |
+| S06 Routine (desktop), S11 TV timeline (desktop) | Hotel bookings | Time rows, one column per day type or kid, blocks as cards | Booking IDs, list toggle, add button in the header |
+| S07 Practices, S13 Rules | Onboarding flow | Selectable tile grid, "Continue (n selected)" as "Add (n selected)" | Wizard framing; first run stays on S03 (D35) |
+| S12 Library | POS menu | Category tiles, poster card grid, add dialog with drop zone | The cart column, prices, search |
+| S17 Warnings | Notifications page | The grouped list | Search, type filters, mark all as read, timestamps |
+| S18 Passcode | Login v1 | The single centred card | Image panel, email, providers, sign-up |
+| S19 Forgot passcode | Forgot password | The single card shape | Email field |
+| S20 Household channels | POS tables | Filter tabs, tile grid with a status badge | Floors, reserved states |
+| Every parent screen | Shell of all templates | Sidebar on desktop, top bar | Search, theme toggle, avatar, download link; the bell stays and opens S17 |
+
+Other kit pages (calendar, tasks, notes, file manager list view) may be consulted for a specific layout question during the build, under the same rule: reference only, rebuilt from the registry.
