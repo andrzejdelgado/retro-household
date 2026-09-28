@@ -30,8 +30,8 @@ for (const [name, make] of [
           sun: "we",
         },
         dayTypes: [
-          { id: "wd", label: "Weekday", blocks: [] },
-          { id: "we", label: "Weekend", blocks: [] },
+          { id: "wd", label: "Weekday", kind: "weekday", blocks: [] },
+          { id: "we", label: "Weekend", kind: "weekend", blocks: [] },
         ],
         allowances: [],
         channels: [],

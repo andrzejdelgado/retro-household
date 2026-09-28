@@ -1,5 +1,5 @@
 // Stored entities, docs/05-domain-model.md §1. Everything lives in the browser (D05).
-import type { BlockKind, CountableTech } from "@/content";
+import type { BlockKind, CountableTech, DayKind } from "@/content";
 import type { Weekday } from "@/lib/clock/clock";
 
 export type Id = string;
@@ -44,6 +44,8 @@ export type Kid = {
 export type DayType = {
   id: Id;
   label: string;
+  /** Which rhythm template it descends from; a split weekday stays a "weekday". */
+  kind: DayKind;
   blocks: RoutineBlock[];
 };
 

@@ -73,3 +73,19 @@ Decisions and deviations:
 - The first M2 commit broke the production build: the IndexedDB store opened its database at construction, which also runs during server prerendering. The database now opens on first use. Lesson: read the build's exit code, not a grep of its output.
 
 Check: lint, typecheck, format:check, 141 tests and build green. Proves: C1.3 (mechanism). Status: closed.
+
+## M3 — Routine and schedule
+Date: 2026-09-28
+
+Steps taken (in order):
+1. Added `kind` to DayType so a split weekday still refreshes from the weekday template.
+2. Wrote the routine module: template application, `createKid` with default day types and allowances, split, copy by re-pointing (D29) with relabelling ("Monday · Tuesday · Wednesday · Thursday"), merge back, `editBlock` with the ripple rule, `addPractice` and `addBlock` (first gap that fits, else just before sleep by shortening the last block), `removeBlock`, and `refreshForBracket` (D08: untouched template blocks replaced, edited ones kept, allowances refreshed).
+3. Wrote the schedule module: default days per bracket, default window from the screen slot for the cap's length (D17, D27), layout back to back with refusal at the window end, now-playing offset, scheduled minutes, per-day programme override (D30).
+4. Wrote the seed household (Miranda and John: Grace 2, Henry 4, Ella 7; four shows as metadata; Henry and Ella's default windows overlap at 16:30).
+5. Tests: create, split, copy, merge, ripple including the bedtime refusal and the backward shrink, practice placement, birthday refresh; defaults, layout, now-playing at 17:08, per-day programme; seed brackets and overlap. 160 tests pass.
+
+Decisions and deviations:
+- D45 logged: a block swallowed by a ripple is removed and reported, not refused. Refusal made the demo persona's class-until-17:00 edit a dead end. J3 and the timeline spec updated.
+- Manual allowances have days per week but no chosen days. The accumulator (M4) will count them on the first N weekdays, Monday first; recorded there.
+
+Check: lint, typecheck, format:check, 160 tests, build exit 0. Proves: C3.4, C4.1, C4.2, C6.2 (logic). Status: closed.

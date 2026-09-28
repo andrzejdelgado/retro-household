@@ -38,7 +38,7 @@ A shadcn Tabs row: "Weekday", "Weekend" by default. After a split, one tab per d
 
 ### Timeline (routine)
 
-A vertical list of blocks in time order, each a card with time range, icon by `kind`, title, and a chevron. Editing a block opens a Sheet with start, end, title, note, and the why if it came from a practice. Reordering is by changing times, not by drag, so mobile stays reliable. Times ripple: changing a block's end moves the next block's start to match, changing a start moves the previous block's end, and blocks never overlap. The sleep block anchors the end of the day; a change that would push any block past it is refused inline with the reason (D28). Gaps are shown as a thin dashed line with an add action.
+A vertical list of blocks in time order, each a card with time range, icon by `kind`, title, and a chevron. Editing a block opens a Sheet with start, end, title, note, and the why if it came from a practice. Reordering is by changing times, not by drag, so mobile stays reliable. Times ripple: changing a block's end moves the next block's start to match and shrinks it, changing a start moves the previous block's end, and blocks never overlap. A block swallowed entirely is removed and named in a line under the timeline with an undo (D45). The sleep block anchors the end of the day; a change that would push into it is refused inline with the reason (D28). Gaps are shown as a thin dashed line with an add action.
 
 ### TV timeline (household)
 
