@@ -23,3 +23,34 @@ Decisions and deviations:
 Check: `npm run lint`, `npm run typecheck`, `npm run format:check`, `npm test` (1 test) and `npm run build` all green locally and in CI (the first CI run failed on Prettier for a Markdown file; Markdown is now excluded from Prettier). Shell seen at both widths locally and on the deployed URL. Vercel project created by the user from the dashboard with all defaults; production at https://retro-household.vercel.app, deploying on every push to main.
 
 Proves: enables C7.1. Status: closed.
+
+## M1 — Content, bracket, clock
+Date: 2026-09-28
+
+Steps taken (in order):
+1. Wrote the content module under `src/content`: types, the eight brackets with range expansion, caps, tech stages (16 technologies, 28 rows, later-opening entries), practices (7 domains, 27 rows, the domain's framing line as the one-line why), rhythm templates (10, weekday and weekend per bracket group), the nine major rules, and sources derived from the files' source sections (25). Row text is kept exactly as written in the files.
+2. Wrote lookups in `src/content/index.ts`: cap, tech stage and default allowances per bracket, practices per bracket and domain, rhythm template per bracket and day kind, opens-at age for closed technologies.
+3. Wrote the bracket module (age by calendar, bracket, out-of-scope at 8, next birthday) and the clock module (demo override, Monday-first weekday, time conversions with "24:00" as the end of day).
+4. Wrote the fidelity test `src/content/content.test.ts`: it parses every pipe table in the five markdown files and checks caps, every tech-stage row for every one-year bracket it covers, every later-opening row, every practice row, every cell of the weekday and weekend rhythm tables ("Same" cells resolved against the leftmost cell), the nine rule bullets in order, and every source link. 139 tests pass.
+
+Decisions and deviations:
+- Rhythm templates put a `screen` block at 16:30 with the daily cap's length (D17) and keep the window's own activity as the following block. For 7 to 8 the cap fills the window, so the activity is kept as a note on the TV block ("On days without TV this hour is: …") rather than dropped. A `sleep` block from bedtime to 24:00 anchors each day (D28). Infants get a single outdoor block with a note that they set their own rhythm.
+- Sources are derived once by a small script and committed as data. To regenerate after a practice file changes:
+  ```
+  python3 - <<'PY'
+  import re, json, pathlib
+  files = ["household-major-rules.md","household-tech-access-stages.md","household-routine-elements.md","household-rhythms.md","parent-tech-concerns.md"]
+  by_url = {}
+  for f in files:
+      text = pathlib.Path("best-parctices", f).read_text()
+      m = re.search(r"## Sources\n(.*)$", text, re.S)
+      if not m: continue
+      for title, url in re.findall(r"- \[(.+?)\]\((.+?)\)", m.group(1)):
+          by_url.setdefault(url, {"title": title, "url": url, "usedBy": []})["usedBy"].append(f)
+  entries = ",\n".join("  {\n    title: %s,\n    url: %s,\n    usedBy: %s,\n  }" % (json.dumps(e["title"]), json.dumps(e["url"]), json.dumps(e["usedBy"])) for e in by_url.values())
+  pathlib.Path("src/content/sources.ts").write_text('import type { Source } from "./types";\n\n// Derived from the "## Sources" sections of best-parctices/*.md (D24).\nexport const SOURCES: Source[] = [\n%s,\n];\n' % entries)
+  PY
+  ```
+- Vitest config renamed to `.mts` to stop a Vite loader warning.
+
+Check: lint, typecheck, format:check, 139 tests and build all green. Proves: C2.1, C6.1 (logic). Status: closed.
