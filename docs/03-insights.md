@@ -31,6 +31,6 @@ Date: 2026-09-28. Each insight names its evidence in the practice files, its imp
 
 Every feature in D11 traces to at least one insight. Every insight traces to a practice file.
 
-## Proposed addition from I12
+## Proposed addition from I12 (parked)
 
-A small "what opens next" view per child: the next bracket, the date it starts, and the technologies and practices that change. It is read-only and derived from data the app already holds. It is not in D11, so it needs a decision before it enters the specs.
+A small "what opens next" view per child: the next bracket, the date it starts, and the technologies and practices that change. It is read-only and derived from data the app already holds. It is not in D11. On 2026-09-28 the user set the demo premise that a parent sets up a programme for the 1-year-old and receives the warning, which removes the empty-page motivation. Parked on the roadmap in `PLAN.md`.

@@ -33,7 +33,7 @@ The three households were chosen to cover the product's three regimes: no screen
 **Jobs to be done.**
 - Create both kids with birthdates and PINs; get defaults for two different brackets in one go.
 - Build each kid's routine from defaults, adjust the after-school hour, print both.
-- Set up channels for Simona, and keep Selena, whose budget is zero, out of the room during the slot.
+- Set up channels for Simona. Set up a short Shichida programme for Selena, read the warning the app raises for a child under 3, and decide.
 - Load a handful of pre-watched films and series episodes into the library and lay out the week.
 - Set the major rules and print them for the fridge and for Andrzej.
 - Split Simona's week so Monday to Thursday, with the class until 17:00, differ from Friday, and clone one day onto the others.

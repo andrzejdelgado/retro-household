@@ -54,6 +54,8 @@ In v1: everything in D11 to D19, plus kid profiles, settings, Sources page, demo
 
 Out of v1: OAuth and accounts, cross-device sync, home server, physical device, phone box and landline, Wi-Fi enforcement, console time counting, native TV app, actual-usage tracking outside the TV app, kid-facing anything other than the TV app.
 
+Roadmap, not v1: a read-only "what opens next" view per child (next bracket, its date, what changes), proposed by insight I12 and parked on 2026-09-28.
+
 ## 5. Phases
 
 Each phase has inputs, outputs and an exit check. A phase closes when the exit check passes and its `docs/log/NN-*.md` record is written.
