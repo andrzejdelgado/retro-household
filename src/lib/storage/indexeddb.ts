@@ -21,27 +21,29 @@ function open(): Promise<IDBPDatabase<Schema>> {
 
 /** The browser store: one household record and a blob store for videos and posters (D18). */
 export function createIndexedDbStore(): HouseholdStore {
-  const dbPromise = open();
+  // Opened on first use, never at construction, so server rendering can build the store safely.
+  let dbPromise: Promise<IDBPDatabase<Schema>> | null = null;
+  const db = () => (dbPromise ??= open());
   return {
     async load() {
-      return (await (await dbPromise).get("household", CURRENT)) ?? null;
+      return (await (await db()).get("household", CURRENT)) ?? null;
     },
     async save(household) {
-      await (await dbPromise).put("household", household, CURRENT);
+      await (await db()).put("household", household, CURRENT);
     },
     async putBlob(key, blob) {
-      await (await dbPromise).put("blobs", blob, key);
+      await (await db()).put("blobs", blob, key);
     },
     async getBlob(key) {
-      return (await (await dbPromise).get("blobs", key)) ?? null;
+      return (await (await db()).get("blobs", key)) ?? null;
     },
     async deleteBlob(key) {
-      await (await dbPromise).delete("blobs", key);
+      await (await db()).delete("blobs", key);
     },
     async clear() {
-      const db = await dbPromise;
-      await db.clear("household");
-      await db.clear("blobs");
+      const d = await db();
+      await d.clear("household");
+      await d.clear("blobs");
     },
   };
 }

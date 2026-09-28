@@ -70,5 +70,6 @@ Decisions and deviations:
 - The seed household (Miranda and John, kids 2, 4 and 7) needs template application from the routine module, so it moves to M3. The plan's "short demo clips referenced by name" is dropped: ffmpeg is not on this machine and the repository ships no video; seeded shows are metadata and the demo adds real clips through the library (T03 handles a missing file).
 - The "change survives a reload" browser check waits for the first screen that saves (M5); the mechanism is proven by the test.
 - Fixed the Vitest alias for a project path containing a space (`fileURLToPath`, not `URL.pathname`).
+- The first M2 commit broke the production build: the IndexedDB store opened its database at construction, which also runs during server prerendering. The database now opens on first use. Lesson: read the build's exit code, not a grep of its output.
 
 Check: lint, typecheck, format:check, 141 tests and build green. Proves: C1.3 (mechanism). Status: closed.
