@@ -26,4 +26,4 @@ None new.
 Every goal has at least one criterion. Every criterion names a check method. Every demo step names criteria; criteria not in the demo path (C2.1, C4.2, C5.1, C5.2, C6.2, C8.x) are unit-test or audit criteria. Passed, pending user review of the goals themselves.
 
 ## What was learned
-- The demo path forced a decision on the demo kids (ages 3 and 6) so that both a zero-and-a-cap bracket and a games-capable bracket appear. Fixing demo data early makes every later phase concrete.
+- The demo path first fixed the demo kids at ages 3 and 6. In Phase 2 the user replaced the demo persona with a household of kids aged 1 and 4, so the demo now shows the zero-budget bracket, the strictest capped bracket (30 min a day, 2 h a week, max 4 days, never two days in a row) and a split week. The games-capable bracket is shown through the three-kid seed household instead. Fixing demo data early makes every later phase concrete.

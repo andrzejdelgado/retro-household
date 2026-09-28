@@ -11,7 +11,7 @@ Kids, routines, rules, Wi-Fi hours and TV schedules, from an empty app to a prin
 
 | ID | Criterion | Checked by |
 |---|---|---|
-| C1.1 | From an empty app, a parent with two kids (ages 3 and 6) reaches a printed weekday routine for both in under 10 minutes without reading any help text. | Timed demo run |
+| C1.1 | From an empty app, a parent with two kids (ages 1 and 4) reaches a printed weekday routine for both in under 10 minutes without reading any help text. | Timed demo run |
 | C1.2 | Every screen reached during setup shows one clear next action. No screen is a dead end. | Checklist walk of every setup screen |
 | C1.3 | Closing the browser mid-setup and reopening loses nothing. | Reload at each setup step |
 | C1.4 | Every list that can be empty has an empty state that says what to do next. | Checklist walk |
@@ -107,10 +107,12 @@ The demo on one computer follows this path. Each step names the criteria it exer
 1. Open the empty app, create the household and two kids with birthdates and PINs. (C1.2, C1.4)
 2. Accept default routines for both, print the weekday page for each. (C1.1, C2.1, C3.1)
 3. Change one allowance past the cap, see the warning and its fix, dismiss it, save anyway. (C2.2, C2.3, C2.4, C5.3)
-4. Set up channels for both kids, see the overlap on the TV timeline, apply the proposed split. (C5.5)
-5. Add video files to the library, build one channel's programme. (C4.2)
-6. Set household rules and Wi-Fi hours, print the rules page. (C3.2)
-7. Open the TV app, enter a PIN, tune in mid-show, then tune in outside the window. (C4.1, C4.3, C4.4, C4.6, C4.7)
-8. Press Cmd+K, add the sibling as co-watcher, check both viewing logs. (C4.5)
-9. Advance the mocked date past a birthday, show the bracket change. (C6.1)
-10. Switch to mobile width in device mode and repeat steps 1 to 4. (C7.1, C7.3)
+4. Set up channels for the 4-year-old. Try to add one for the 1-year-old and see the warning. (C5.4)
+5. Split the 4-year-old's week: Monday to Thursday end with a class at 17:00, Friday differs. Clone Monday onto the other three days, print one page per distinct day. (C3.4)
+6. Load the three-kid demo household, see the overlap on the TV timeline, apply the proposed split. (C5.5)
+7. Add video files to the library, build one channel's programme. (C4.2)
+8. Set household rules and Wi-Fi hours, print the rules page. (C3.2)
+9. Open the TV app, enter a PIN, tune in mid-show, then tune in outside the window. (C4.1, C4.3, C4.4, C4.6, C4.7)
+10. Press Cmd+K, add the 1-year-old as co-watcher, see her zero budget go into overage in both viewing logs. (C4.5, C5.4)
+11. Advance the mocked date past a birthday, show the bracket change. (C6.1)
+12. Switch to mobile width in device mode and repeat steps 1 to 5. (C7.1, C7.3)

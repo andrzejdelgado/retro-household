@@ -14,6 +14,7 @@ Date: 2026-09-28
 5. Built the feature coverage table for F1 to F4 from D11. All four features are covered.
 6. Surfaced one proposed addition from I12: a read-only "what opens next" view per child. Left it for a decision.
 7. Wrote `process/03-ux-research.md` (playbook) and this record. Committed and pushed.
+8. User changed persona names to English, then replaced P2 with a household of kids aged 1 and 4 (daycare 9:30 to 13:30; school 9:00 to 16:00 with a class until 17:00 Monday to Thursday). Finished the consistency edits P2 needed (remaining references to the old kids, the console job replaced by a split-week job since a 4-year-old has no games), updated C1.1 and the demo path in `docs/01-goals.md`, and extended I7 with the sibling-exposure rule the new pains point at.
 
 ## Decisions made
 None new. One proposed: "what opens next" view (pending).

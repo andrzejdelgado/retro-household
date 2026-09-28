@@ -4,7 +4,7 @@ Date: 2026-09-28. Method: desk research. Sources: `best-parctices/parent-tech-co
 
 The three households were chosen to cover the product's three regimes: no screen budget at all (under 3), the demo case (two kids in different brackets), and the complexity case (three kids, one TV, a split week).
 
-## P1 — Emma and Tom, one child, 14 months
+## P1 — Emma and Marshall, one child (Lily), 14 months
 
 **Household.** Urban flat, both work full time, daycare pick-up around 16:30. One child, Lily, bracket 1 to 2. No grandparents nearby.
 
@@ -22,27 +22,27 @@ The three households were chosen to cover the product's three regimes: no screen
 
 **What must be true for them.** The app is useful with a zero screen budget. Routine, adult rules and Wi-Fi hours carry the value. TV features stay out of the way without disappearing.
 
-## P2 — Sarah, two children, 3 and 6
+## P2 — Ilona and Andrzej, two children, 1 and 4
 
-**Household.** Suburban house, Sarah handles most of the setup, her partner James shares the rules but not the admin. Kids Mia (3, bracket 3 to 4) and Oliver (6, bracket 6 to 7). One TV in the living room. School and kindergarten from 8 to 16.
+**Household.** Suburban house, Ilona handles most of the setup, her partner Andrzej shares the rules but not the admin. Kids Selena (1, bracket 1 to 2) and Simona (4, bracket 4 to 5). One TV in the living room. Selena's kindergarten from 9:30 to 13:30. Simona's school from 9:00 to 16:00. Mondays till Thursday has extracurricular class, so finishes at 17:00.
 
-**Built from concerns.** 3 (harmful content through feeds), 2 (meltdowns at switch-off), 7 (the collective action problem, Oliver's classmates have tablets), 6 (mental health as a preview).
+**Built from concerns.** 3 (harmful content through feeds), 2 (meltdowns at switch-off), 7 (the collective action problem, Simona's classmates have tablets), 6 (mental health as a preview).
 
-**What she wants.** Content she chose, on a schedule she set, with the switch-off decided by the clock and not by her. Two children with different rules and no fight over whose turn it is. James running the same rules without her explaining them each evening. Something on paper she can point at when Oliver says everyone else has YouTube.
+**What she wants.** Content she chose, on a schedule she set, with the switch-off decided by the clock and not by her. Two children with different rules and no fight over whose turn it is. Andrzej running the same rules without her explaining them each evening. Something on paper she can point at when Simona says everyone else has YouTube.
 
 **Jobs to be done.**
 - Create both kids with birthdates and PINs; get defaults for two different brackets in one go.
 - Build each kid's routine from defaults, adjust the after-school hour, print both.
-- Set up channels for both kids and resolve the overlap on one TV.
+- Set up channels for Simona, and keep Selena, whose budget is zero, out of the room during the slot.
 - Load a handful of pre-watched films and series episodes into the library and lay out the week.
-- Set the major rules and print them for the fridge and for James.
-- Let Oliver have his 20-minute retro console sessions counted in the same budget.
+- Set the major rules and print them for the fridge and for Andrzej.
+- Split Simona's week so Monday to Thursday, with the class until 17:00, differ from Friday, and clone one day onto the others.
 
-**Pains.** Mia's tantrum when the tablet at grandma's is taken away. Oliver's "five more minutes". Keeping two sets of limits in her head. James's "I didn't know that was the rule".
+**Pains.** Selena's tantrum when Simona watches TV. Simona's "five more minutes". Keeping two sets of limits in her head. Andrzej's "I didn't know that was the rule".
 
 **What must be true for her.** Setup for two kids takes one evening. The TV app makes switch-off a non-event. The printed pages are the shared truth of the household. This is the demo persona.
 
-## P3 — The Millers, three children, 2, 4 and 7
+## P3 — Miranda and John, three children, 2, 4 and 7
 
 **Household.** Town house, two working parents with staggered hours, one child in daycare, one in kindergarten, one in school. Kids Grace (2, bracket 2 to 3), Henry (4, bracket 4 to 5), Ella (7, bracket 7 to 8). Ella has a club on Wednesday. One TV. Bedtimes at 18:30, 19:00 and 19:30.
 
@@ -65,7 +65,7 @@ The three households were chosen to cover the product's three regimes: no screen
 
 Not users of the app, but readers of its paper.
 
-- **The second parent** (James in P2), who must run the same rules and settle disagreements away from the child. The printed page and the one-line "why" on each practice are for them.
+- **The second parent** (Andrzej in P2), who must run the same rules and settle disagreements away from the child. The printed page and the one-line "why" on each practice are for them.
 - **Grandparents, nannies, babysitters**, who read the fridge page and need the rhythm and the rules in plain words with no app in sight.
 
 ## The child as TV user
