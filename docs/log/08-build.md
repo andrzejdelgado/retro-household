@@ -122,3 +122,19 @@ Decisions and deviations:
 - Routes: `/passcode`, `/passcode/forgot`, `/kids/new`, `/kids/[id]`, `/kids/[id]/edit`. Section cards link to `/kids/[id]/routine`, `/screen-time`, `/channels` and `/print`, which arrive in M6 to M10.
 
 Check: lint, typecheck, format:check, 178 tests, build exit 0; demo step 1 walked at both widths. Proves: C1.2, C1.4, C5.3, C5.4 (screens), C7.1, C7.4; C1.3 in the browser. Status: closed.
+
+## M6 — Routine and practices
+Date: 2026-09-28
+
+Steps taken (in order):
+1. Routine module gained `insertBlock` (explicit times, refuses overlaps) and `gapsOf`; 179 tests.
+2. S06 Routine: the day switcher (Tabs plus an actions menu: split weekdays, split weekend, copy this day to…, merge back), the mobile timeline of block cards with gap rows, the block editor as a Drawer on mobile and a Sheet on desktop (start, end, title, note, kind for custom blocks, the practice's why, remove), the "Removed: … Undo" line after a ripple (D45), the copy dialog with weekday toggles (D29), routine-related warnings under the timeline, and the desktop schedule grid with time rows by day-type columns (D44).
+3. S07 Practices: seven domain tabs, selection tiles built on ToggleGroup with the title, duration, detail, why and a source link, already-added tiles disabled with a check, "Show all ages", and "Add (n selected)" placing each practice at the first gap or before sleep.
+4. Design review in the browser: the mobile timeline, the block editor with the class-until-17:00 edit (pick-up and TV removed, named, undone), the practices tiles and the add flow (a practice landed at 18:45 before sleep), the desktop grid and the desktop practices layout. Fixes applied: stock tab triggers, bottom padding under the floating button, the tab strip hidden on desktop where column headers take its place, the practices add bar inline on desktop, headroom in the grid.
+
+Decisions and deviations:
+- The block form is keyed on its target instead of resetting state in an effect, to satisfy the React Compiler lint rule without touching generated code.
+- Split and merge were verified by the module tests and the menu, not walked in the browser; J4's print step waits for M10.
+- C1.1's timed run waits for M10 (print), as the dev plan allows.
+
+Check: lint, typecheck, format:check, 179 tests, build exit 0; J3 walked at both widths. Proves: C2.5, C3.4 (screens). Status: closed.

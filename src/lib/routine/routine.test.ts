@@ -6,6 +6,8 @@ import {
   createKid,
   dayTypeFor,
   editBlock,
+  gapsOf,
+  insertBlock,
   mergeBack,
   orderedDayTypes,
   refreshForBracket,
@@ -165,5 +167,38 @@ describe("refreshForBracket (D08, C6.1)", () => {
       minutesPerDay: 45,
       daysPerWeek: 5,
     });
+  });
+});
+
+describe("insertBlock and gapsOf", () => {
+  it("refuses an overlap and names the block, and lists gaps", () => {
+    const dt = dayTypeFor(simona(), "mon");
+    const clash = insertBlock(dt, {
+      start: "17:00",
+      end: "17:20",
+      title: "Music",
+      kind: "play",
+      practiceId: null,
+      note: null,
+      fromTemplate: false,
+    });
+    expect(clash.ok).toBe(false);
+    const withGap = editBlock(
+      dt,
+      dt.blocks.find((b) => b.title === "Dinner")!.id,
+      { end: "17:45" },
+    );
+    if (!withGap.ok) throw new Error(withGap.refused);
+    expect(gapsOf(withGap.value)).toEqual([{ start: "17:45", end: "18:00" }]);
+    const ok = insertBlock(withGap.value, {
+      start: "17:45",
+      end: "18:00",
+      title: "Music",
+      kind: "play",
+      practiceId: null,
+      note: null,
+      fromTemplate: false,
+    });
+    expect(ok.ok).toBe(true);
   });
 });

@@ -376,3 +376,40 @@ export function refreshForBracket(kid: Kid, now: Date): Kid {
     }),
   };
 }
+
+/** Insert a block with explicit times; refused when it overlaps an existing block. */
+export function insertBlock(
+  dayType: DayType,
+  block: Omit<RoutineBlock, "id">,
+): Result<DayType> {
+  if (minutesOf(block.end) <= minutesOf(block.start))
+    return { ok: false, refused: "A block needs to end after it starts." };
+  const clash = dayType.blocks.find(
+    (b) =>
+      minutesOf(b.start) < minutesOf(block.end) &&
+      minutesOf(block.start) < minutesOf(b.end),
+  );
+  if (clash)
+    return {
+      ok: false,
+      refused: `That overlaps "${clash.title}" (${clash.start} to ${clash.end}).`,
+    };
+  return {
+    ok: true,
+    value: {
+      ...dayType,
+      blocks: sortBlocks([...dayType.blocks, { ...block, id: newId() }]),
+    },
+  };
+}
+
+/** The gaps in a day, for the dashed add rows on the timeline. */
+export function gapsOf(dayType: DayType): { start: string; end: string }[] {
+  const blocks = sortBlocks(dayType.blocks);
+  const gaps: { start: string; end: string }[] = [];
+  for (let i = 0; i < blocks.length - 1; i++) {
+    if (minutesOf(blocks[i + 1].start) > minutesOf(blocks[i].end))
+      gaps.push({ start: blocks[i].end, end: blocks[i + 1].start });
+  }
+  return gaps;
+}
