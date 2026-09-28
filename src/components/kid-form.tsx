@@ -54,9 +54,11 @@ export function KidForm({ kid }: { kid?: Kid }) {
   const [pin, setPin] = React.useState(kid?.pin ?? "");
   const [formKey, setFormKey] = React.useState(0);
 
-  const validDate =
+  const parsable =
     /^\d{4}-\d{2}-\d{2}$/.test(birthdate) &&
     !Number.isNaN(Date.parse(birthdate));
+  const future = parsable && new Date(`${birthdate}T00:00:00`) > now;
+  const validDate = parsable && !future;
   const pinOk = pin.length === 0 || pin.length === 4;
   const canSave = name.trim().length > 0 && validDate && pinOk;
   const age = validDate ? ageOn(birthdate, now) : null;
@@ -120,13 +122,11 @@ export function KidForm({ kid }: { kid?: Kid }) {
       )}
       <Card>
         <CardHeader>
-          <CardTitle className="font-heading text-2xl">
-            {kid
-              ? `Edit ${kid.name}`
-              : firstRun
-                ? "Add your first child"
-                : "Add a child"}
-          </CardTitle>
+          {(kid || firstRun) && (
+            <CardTitle className="font-heading text-2xl">
+              {kid ? `Edit ${kid.name}` : "Add your first child"}
+            </CardTitle>
+          )}
         </CardHeader>
         <CardContent className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
@@ -151,11 +151,13 @@ export function KidForm({ kid }: { kid?: Kid }) {
               required
             />
             <p className="text-muted-foreground text-sm" aria-live="polite">
-              {validDate && bracket
-                ? beyond
-                  ? "Retro Household covers children under 8. Saved as bracket 7 to 8."
-                  : `${name.trim() || "This child"} is ${age} · ${bracketLabel(bracket)}`
-                : "The age sets every default."}
+              {future
+                ? "That is in the future."
+                : validDate && bracket
+                  ? beyond
+                    ? "Retro Household covers children under 8. Saved as bracket 7 to 8."
+                    : `${name.trim() || "This child"} is ${age} · ${bracketLabel(bracket)}`
+                  : "The age sets every default."}
             </p>
           </div>
           <fieldset className="flex flex-col gap-2">

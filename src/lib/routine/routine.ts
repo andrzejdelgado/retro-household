@@ -10,6 +10,7 @@ import { minutesOf, timeOf, WEEKDAYS, type Weekday } from "@/lib/clock/clock";
 import {
   newId,
   type DayType,
+  type Household,
   type Kid,
   type RoutineBlock,
 } from "@/lib/model/types";
@@ -99,6 +100,7 @@ export function createKid(
     })),
     channels: [],
     firstVisitSeen: false,
+    templateBracket: bracket,
   };
 }
 
@@ -355,11 +357,13 @@ export function removeBlock(dayType: DayType, blockId: string): DayType {
  */
 export function refreshForBracket(kid: Kid, now: Date): Kid {
   const bracket = bracketFor(kid.birthdate, now);
+  if (bracket === kid.templateBracket) return kid;
   const overlaps = (a: RoutineBlock, b: RoutineBlock) =>
     minutesOf(a.start) < minutesOf(b.end) &&
     minutesOf(b.start) < minutesOf(a.end);
   return {
     ...kid,
+    templateBracket: bracket,
     dayTypes: kid.dayTypes.map((d) => {
       const edited = d.blocks.filter((b) => !b.fromTemplate);
       const fresh = templateBlocks(bracket, d.kind).filter(
@@ -406,4 +410,15 @@ export function gapsOf(dayType: DayType): { start: string; end: string }[] {
       gaps.push({ start: blocks[i].end, end: blocks[i + 1].start });
   }
   return gaps;
+}
+
+/** Refresh every kid whose bracket changed since their templates were applied; unchanged input returns the same object. */
+export function sweepBirthdays(household: Household, now: Date): Household {
+  let changed = false;
+  const kids = household.kids.map((k) => {
+    const next = refreshForBracket(k, now);
+    if (next !== k) changed = true;
+    return next;
+  });
+  return changed ? { ...household, kids } : household;
 }

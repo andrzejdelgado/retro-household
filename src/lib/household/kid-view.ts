@@ -14,6 +14,16 @@ export const KID_COLOUR_CLASS: Record<Kid["colour"], string> = {
   6: "bg-kid-6",
 };
 
+/** Text placed on a kid colour: ink on mustard, white elsewhere, so every pair clears 4.5:1. */
+export const KID_TEXT_CLASS: Record<Kid["colour"], string> = {
+  1: "text-white",
+  2: "text-white",
+  3: "text-foreground",
+  4: "text-white",
+  5: "text-white",
+  6: "text-white",
+};
+
 export const KID_COLOUR_NAMES: Record<Kid["colour"], string> = {
   1: "Teal",
   2: "Terracotta",

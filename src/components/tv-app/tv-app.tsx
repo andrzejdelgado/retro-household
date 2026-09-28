@@ -21,7 +21,7 @@ type Screen =
 
 /** The kid-facing TV app (docs/06-screen-specs.md §4): PIN, picker, playback or off-air, co-watch. */
 export function TvApp() {
-  const { household } = useHousehold();
+  const { household, status } = useHousehold();
   const now = useTvClock();
   const [screen, setScreen] = React.useState<Screen>({ kind: "pin" });
   const [coWatchers, setCoWatchers] = React.useState<string[]>([]);
@@ -85,7 +85,7 @@ export function TvApp() {
     enterRef.current = enterChannel;
   });
 
-  if (!household) {
+  if (status === "loading") {
     return (
       <main className="flex min-h-dvh items-center justify-center">
         <Skeleton className="h-24 w-24 rounded-full" />
@@ -97,11 +97,11 @@ export function TvApp() {
   const kid =
     screen.kind === "pin"
       ? null
-      : (household.kids.find((k) => k.id === screen.kid.id) ?? null);
+      : (household?.kids.find((k) => k.id === screen.kid.id) ?? null);
   const colour = kid ? `var(--kid-${kid.colour})` : undefined;
 
   const submitPin = (pin: string) => {
-    const match = household.kids.find((k) => k.pin === pin);
+    const match = household?.kids.find((k) => k.pin === pin);
     if (!match) return false;
     setScreen({ kind: "picker", kid: match, focus: 0 });
     return true;
@@ -114,7 +114,7 @@ export function TvApp() {
     body = (
       <Picker
         kid={kid}
-        shows={household.shows}
+        shows={household?.shows ?? []}
         now={now}
         focus={screen.focus}
         onSelect={(i) => enterChannel(kid, i)}
@@ -122,8 +122,10 @@ export function TvApp() {
     );
   } else {
     const channel = kid.channels[screen.index] ?? kid.channels[0];
-    const playing = channel ? nowPlaying(channel, household.shows, now) : null;
-    const budget = budgetLeft(kid, household.viewingLog, now);
+    const playing = channel
+      ? nowPlaying(channel, household?.shows ?? [], now)
+      : null;
+    const budget = budgetLeft(kid, household?.viewingLog ?? [], now);
     const onAir = Boolean(playing) && !budget.spent;
     body =
       onAir && channel && playing ? (
@@ -131,7 +133,7 @@ export function TvApp() {
           kid={kid}
           channel={channel}
           playing={playing}
-          shows={household.shows}
+          shows={household?.shows ?? []}
           coWatchers={coWatchers}
           now={now}
         />
@@ -151,7 +153,7 @@ export function TvApp() {
           open={overlay}
           onOpenChange={setOverlay}
           host={kid}
-          kids={household.kids}
+          kids={household?.kids ?? []}
           value={coWatchers}
           onChange={setCoWatchers}
           now={now}

@@ -1,5 +1,5 @@
 // Stored entities, docs/05-domain-model.md §1. Everything lives in the browser (D05).
-import type { BlockKind, CountableTech, DayKind } from "@/content";
+import type { BlockKind, Bracket, CountableTech, DayKind } from "@/content";
 import type { Weekday } from "@/lib/clock/clock";
 
 export type Id = string;
@@ -39,6 +39,8 @@ export type Kid = {
   allowances: Allowance[];
   channels: Channel[];
   firstVisitSeen: boolean;
+  /** The bracket whose templates the routine last took; a birthday sweep refreshes it (D08). */
+  templateBracket: Bracket;
 };
 
 export type DayType = {

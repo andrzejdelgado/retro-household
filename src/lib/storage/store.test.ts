@@ -36,6 +36,7 @@ for (const [name, make] of [
         allowances: [],
         channels: [],
         firstVisitSeen: false,
+        templateBracket: "4-5",
       });
       await store.save(h);
       const loaded = await store.load();

@@ -10,6 +10,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useHousehold } from "@/lib/household/provider";
 import { isUnlocked } from "@/lib/household/unlock";
 import { useNow } from "@/lib/household/use-now";
+import { sweepBirthdays } from "@/lib/routine/routine";
 import { cn } from "@/lib/utils";
 
 /**
@@ -17,9 +18,22 @@ import { cn } from "@/lib/utils";
  * banner (S15). On first run, S03 has no nav and no back (D36).
  */
 export function ParentChrome({ children }: { children: React.ReactNode }) {
-  const { status, household } = useHousehold();
+  const { status, household, update } = useHousehold();
   const router = useRouter();
   const pathname = usePathname();
+  const now = useNow();
+
+  // Birthdays: untouched template blocks follow the new bracket, edited ones stay (D08, C6.1).
+  const sweepKey = household
+    ? household.kids.map((k) => `${k.id}:${k.templateBracket}`).join(",")
+    : "";
+  React.useEffect(() => {
+    if (!household) return;
+    if (sweepBirthdays(household, now) !== household)
+      update((h) => sweepBirthdays(h, now));
+    // `now` is read once per household or clock change on purpose.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sweepKey, household?.settings.demoClock, update]);
   const needsPasscode =
     status === "ready" &&
     (!household || (household.passcode !== null && !isUnlocked()));

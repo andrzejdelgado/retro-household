@@ -220,3 +220,46 @@ Decisions and deviations:
 - The browser tool's typed keys do not reach a page with no focused element; keyboard behaviour was verified by dispatching key events in the page, and the numpad covers mouse use.
 
 Check: lint, typecheck, format:check, 180 tests, build exit 0; J9 and J10 walked. Proves: C4.1, C4.3, C4.4, C4.5, C4.6, C4.7. Status: closed.
+
+## M12 — Demo pass and release
+Date: 2026-09-28
+
+Steps taken (in order):
+1. Contrast of every token pair computed from the oklch values: all text pairs clear 4.5:1 after two fixes (the TV's muted text raised from L 0.60 to 0.72; ink instead of white on the mustard kid colour, applied to the timeline bars). The warning colour carries no text anywhere.
+2. Raw elements outside the shadcn components, each a plain element the design system allows: the mobile budget bar button, the grid cells in the routine and TV grids, the picker tile, the file input and the video element, and a remove control inside a rules tile. No component source was changed; the customisation log is empty (C7.2).
+3. The process folder searched for project terms: three generic sentences rewritten; clean (C8.1). Playbooks 00 to 08 and records 00 to 08 present (C8.2).
+4. The deployed URL opened in a browser with no data showed the TV page as a loading skeleton forever; the TV app now shows the PIN screen with no household. Fixed and redeployed on push.
+5. A birthday walk with the demo clock (Henry to 5): bracket, cap and copy followed, but the routine template did not, because nothing called the refresh. Each kid now stores the bracket its templates came from and a sweep runs when the household loads or the clock changes; edited blocks stay (D08, C6.1). Tested.
+6. The split, copy and print steps of the demo path: five weekday columns after the split, "Monday · Tuesday · Wednesday · Thursday" after the copy, and one printed page per distinct day in the picker (C3.4). A decision reference that had leaked into the copy dialog's text was removed.
+7. The UX eval in code and browser mode on J1 and J3 at 375px with the database cleared (`docs/ux-eval/2026-09-28-build-eval.md`): verdict clear; a future birthdate now reads "That is in the future." and blocks Save; the duplicate "Add a child" heading is gone; the refusal styling stays as a Low item.
+8. The generic build playbook `process/08-build.md` written; `PLAN.md` status updated.
+
+Criteria evidence:
+| Criterion | Evidence |
+|---|---|
+| C1.1 | First run to the kid overview and a printed weekday took under three minutes of user actions in M5, M6 and M10 walks; the printed page exists for every day type |
+| C1.2, C1.4 | Every screen in the specs names one primary action; empty states walked on Home, channels, library, routine gaps |
+| C1.3 | Reload after the first kid kept the data (M5); the storage round-trip test |
+| C2.1 | 139 content tests against the five markdown files |
+| C2.2, C2.3, C2.4 | Warnings with one-action fixes on S08, S11, S17; saves never blocked; dismiss and mute walked in M7 |
+| C2.5 | Why lines on S05, S07, S08 and the Sources page |
+| C3.1, C3.2, C3.3 | The A4-width preview with the print stylesheet, 12pt minimum, nothing from the UI on paper; the browser print dialog itself is the user's check in the demo browser |
+| C3.4 | One page per distinct day after split and copy (this milestone) |
+| C4.1 | The clip played 1.9 seconds in at a 16:57 demo clock (M11); the now-playing test |
+| C4.2 | The layout test and the editor refusing a show that does not fit (M8) |
+| C4.3, C4.4 | Off-air walked after the clip ended; off-air tiles dimmed with the power glyph (M11) |
+| C4.5 | Both viewing logs after co-watching (M11) |
+| C4.6, C4.7 | Wrong PIN clears; arrows, Enter and Escape reach every TV screen (M11) |
+| C5.1, C5.2 | Accumulator and warnings tests; the weekly cap warning on Ella (M7) |
+| C5.3 | The budget bar on every minute-changing screen, checked in M5 to M9 |
+| C5.4 | Grace's new channel with W05 from the first keystroke (M8) |
+| C5.5 | J7 walked: stagger, then after-dinner, then shorten (M9) |
+| C6.1 | Henry's fifth birthday under the demo clock: bracket, cap, allowances and templates followed (this milestone) |
+| C6.2 | Warnings derive on every change; the editor's draft warnings (M8) |
+| C7.1 | Every screen walked at 375px with no horizontal scroll |
+| C7.2 | The audit above; empty customisation log |
+| C7.3 | Contrast computed; 44px targets throughout |
+| C7.4 | One primary action per screen, S11 by design has none |
+| C8.1, C8.2 | Process folder clean; playbooks and records complete |
+
+Check: lint, typecheck, format:check, 181 tests, build exit 0. Status: closed. Retro Household v1 is complete at https://retro-household.vercel.app.

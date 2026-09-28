@@ -12,6 +12,7 @@ import {
   orderedDayTypes,
   refreshForBracket,
   screenBlock,
+  sweepBirthdays,
   sleepBlock,
   splitDays,
   weekdaysOf,
@@ -193,3 +194,31 @@ describe("insertBlock and gapsOf", () => {
     expect(ok.ok).toBe(true);
   });
 });
+
+describe("sweepBirthdays", () => {
+  it("refreshes only kids whose bracket changed and returns the same object otherwise", () => {
+    const h = { ...seedLike(), kids: [simona(), selena()] };
+    expect(sweepBirthdays(h, now)).toBe(h);
+    const later = sweepBirthdays(h, new Date("2027-03-15T12:00:00"));
+    expect(later).not.toBe(h);
+    expect(later.kids[0].templateBracket).toBe("5-6");
+    expect(later.kids[1].templateBracket).toBe("1-2");
+  });
+});
+
+function seedLike() {
+  return {
+    id: "h",
+    name: "Home",
+    passcode: null,
+    rules: [],
+    wifiOffWindows: [],
+    settings: { warningsMuted: false, demoClock: null },
+    kids: [],
+    shows: [],
+    viewingLog: [],
+    overlapAcks: [],
+    dismissals: [],
+    updatedAt: "",
+  };
+}

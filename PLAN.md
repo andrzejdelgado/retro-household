@@ -1,6 +1,6 @@
 # Retro Household — Plan
 
-Date: 2026-09-28. Status: discovery closed, plan approved pending review.
+Date: 2026-09-28. Status: built through M12 on 2026-09-28; see `docs/log/08-build.md` for the criteria evidence.
 
 This document leads from the idea to a PRD and then to a dev plan. It records every decision taken during discovery so nothing is re-litigated later. The reusable, project-agnostic method lives in `process/`. The record of each phase lives in `docs/log/NN-*.md`.
 

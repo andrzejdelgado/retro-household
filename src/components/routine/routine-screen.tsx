@@ -207,7 +207,7 @@ export function RoutineScreen({ id }: { id: string }) {
             <DialogTitle>Copy {current.label} to…</DialogTitle>
           </DialogHeader>
           <p className="text-muted-foreground text-sm">
-            The chosen days become this day, edited in one place (D29).
+            The chosen days become this day, edited in one place.
           </p>
           <ToggleGroup
             multiple

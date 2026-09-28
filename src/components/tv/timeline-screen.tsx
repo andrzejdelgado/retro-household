@@ -20,7 +20,7 @@ import {
   type Lane,
 } from "@/lib/conflicts/conflicts";
 import { useHousehold } from "@/lib/household/provider";
-import { KID_COLOUR_CLASS } from "@/lib/household/kid-view";
+import { KID_COLOUR_CLASS, KID_TEXT_CLASS } from "@/lib/household/kid-view";
 import { useNow } from "@/lib/household/use-now";
 import type { Kid } from "@/lib/model/types";
 import {
@@ -233,8 +233,9 @@ function Track({
                   key={channel.id}
                   href={`/kids/${kid.id}/channels/${channel.id}`}
                   className={cn(
-                    "absolute inset-y-3 flex items-center gap-1 overflow-hidden rounded-md border px-2 text-xs text-white",
+                    "absolute inset-y-3 flex items-center gap-1 overflow-hidden rounded-md border px-2 text-xs",
                     KID_COLOUR_CLASS[kid.colour],
+                    KID_TEXT_CLASS[kid.colour],
                     overlapping.has(channel.id) &&
                       "border-warning ring-warning ring-2",
                   )}
@@ -344,8 +345,9 @@ function Grid({
                 key={channel.id}
                 href={`/kids/${kid.id}/channels/${channel.id}`}
                 className={cn(
-                  "absolute inset-x-2 flex items-start gap-1.5 overflow-hidden rounded-md border px-2 py-1 text-xs text-white",
+                  "absolute inset-x-2 flex items-start gap-1.5 overflow-hidden rounded-md border px-2 py-1 text-xs",
                   KID_COLOUR_CLASS[kid.colour],
+                  KID_TEXT_CLASS[kid.colour],
                   overlapping.has(channel.id) &&
                     "border-warning ring-warning ring-2",
                 )}
