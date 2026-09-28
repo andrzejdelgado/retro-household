@@ -185,3 +185,19 @@ Decisions and deviations:
 - Shortening a window made the programme not fit and raised one "does not fit" warning per weekday for a programme that is one list. W10 and W11 are now one per channel when the programme is shared (D30) and one per weekday only when the parent varies by day; the dismissal key follows.
 
 Check: lint, typecheck, format:check, 180 tests, build exit 0; J7 walked at both widths. Proves: C5.5 (screen). Status: closed.
+
+## M10 — Rules, Wi-Fi, print
+Date: 2026-09-28
+
+Steps taken (in order):
+1. S13 Rules: the nine major rules as selection tiles with their detail line (D44), custom rules added from a field and removable, Wi-Fi off windows as cards with day toggles and times, add and remove, "Print rules page".
+2. Print pages: a kid's day (name, the day names it covers, age, the rhythm as a time and title table with the kind icon, notes small, the TV line, Wi-Fi off hours) and the rules page (household name, enabled rules with their detail, Wi-Fi off table, each kid's TV hours). A print stylesheet with 16mm page margins that hides everything but the page; nothing under 12pt.
+3. S14 Print: a page picker (Select on mobile, radio list on desktop), the page laid out at A4 width and scaled to the frame, overflow measured unscaled and reported in words, "Print or save as PDF" calling the browser's print.
+4. Design review: rules tiles at phone width; the kid page and rules page previews at phone and desktop width. First version measured overflow against the phone-width layout and fired falsely; the sheet now renders at A4 width. The rules page then measured 26px over the limit because the preview's padding was counted; the padding is now excluded and the page fits.
+
+Decisions and deviations:
+- Custom rules have no age range: household rules are for adults, and the bracket picker the spec mentioned for them had no owner in the model. Recorded as a deviation from §S13; the picker stays for practices.
+- The physical print preview (browser print dialog, A4 and Letter) is checked by the user or in M12's demo pass; this session verified the stylesheet and the page composition on screen.
+- C1.1's timed run waits for M12 with the full demo path; the flow from an empty app to a printed weekday is now complete end to end.
+
+Check: lint, typecheck, format:check, 180 tests, build exit 0; J8 walked at both widths. Proves: C3.2, C3.3 (composition), C3.4 (pages per day type), C3.1 pending the print dialog. Status: closed.

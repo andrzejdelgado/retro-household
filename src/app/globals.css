@@ -141,3 +141,109 @@
     @apply font-sans;
   }
 }
+
+/* The printed page (design system §7): Fraunces for headers, Geist for rows, nothing under 12pt. */
+.print-page {
+  font-family: var(--font-sans);
+  color: #000;
+  font-size: 12pt;
+  line-height: 1.4;
+  padding: 24px;
+}
+@media print {
+  .print-page {
+    padding: 0;
+  }
+}
+.print-header {
+  margin-bottom: 8mm;
+}
+.print-title {
+  font-family: var(--font-heading);
+  font-size: 24pt;
+  line-height: 1.1;
+}
+.print-subtitle {
+  font-size: 14pt;
+  margin-top: 2mm;
+}
+.print-h2 {
+  font-family: var(--font-heading);
+  font-size: 16pt;
+  margin: 6mm 0 2mm;
+}
+.print-muted {
+  color: #555;
+}
+.print-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.print-table td {
+  padding: 1.5mm 0;
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+}
+.print-time {
+  width: 22mm;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-right: 3mm;
+}
+.print-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 2mm;
+}
+.print-icon {
+  width: 12pt;
+  height: 12pt;
+  flex-shrink: 0;
+}
+.print-note {
+  font-size: 10pt;
+  color: #555;
+}
+.print-line {
+  margin-top: 4mm;
+}
+.print-footer {
+  margin-top: 6mm;
+  font-size: 12pt;
+  color: #555;
+}
+.print-rules {
+  padding-left: 5mm;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+}
+
+@page {
+  size: auto;
+  margin: 16mm;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-page,
+  .print-page * {
+    visibility: visible;
+  }
+  .print-page {
+    position: absolute;
+    inset: 0;
+    width: auto;
+  }
+  .print-preview,
+  .print-sheet {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    overflow: visible;
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+  }
+}
