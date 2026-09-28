@@ -14,6 +14,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useHousehold } from "@/lib/household/provider";
+import { useNow } from "@/lib/household/use-now";
+import { visibleWarnings } from "@/lib/warnings/warnings";
 import { cn } from "@/lib/utils";
 
 // The four tabs of the parent app (docs/06-screen-specs.md §2). Kids are reached from Home.
@@ -88,13 +91,14 @@ export function BottomNav() {
 }
 
 // The only header control is the bell, which opens the warnings list (D41).
-export function TopBar({
-  title,
-  warningCount = 0,
-}: {
-  title: string;
-  warningCount?: number;
-}) {
+export function TopBar({ title }: { title: string }) {
+  const { household } = useHousehold();
+  const now = useNow();
+  const pathname = usePathname();
+  const warningCount = household ? visibleWarnings(household, now).length : 0;
+  // First run: nothing above the form but the product name (D36).
+  if (household && household.kids.length === 0 && pathname === "/kids/new")
+    return null;
   return (
     <header className="bg-background sticky top-0 z-10 flex h-14 items-center justify-between border-b px-4 md:px-6">
       <h1 className="font-heading text-2xl">{title}</h1>

@@ -106,3 +106,19 @@ Decisions and deviations:
 - Every warning message is a consequence for the child, one sentence, then the fixes (spec §1 warning card).
 
 Check: lint, typecheck, format:check, 178 tests, build exit 0. Proves: C2.3, C2.4, C4.5, C5.1, C5.2, C5.5 (logic). Status: closed.
+
+## M5 — First run to kid overview
+Date: 2026-09-28
+
+Steps taken (in order):
+1. Added the shadcn parts the parent screens use (input-otp, label, radio-group, progress, alert, alert-dialog, drawer, dialog, popover, switch, select, tabs, toggle-group, slider, scroll-area, collapsible, accordion, table, dropdown-menu, textarea), all as shipped.
+2. Built the parent chrome: the passcode gate (D40) with a session flag, the sidebar or bottom nav, no chrome on first-run S03 (D36), and the demo clock banner. The top bar reads the warning count from the household.
+3. Screens: S18 passcode in set and enter modes (creates the household with the passcode on first run), S19 forgot passcode with a reset behind a confirm, S03 add or edit kid with the live bracket line, six colour swatches, optional PIN (D31) and "Save and add another" (D34), S04 home with kid cards and the floating add action, S05 kid overview with the first-visit note, four section cards, the budget bar with its drawer on mobile and the budget card on desktop, and the warning card component.
+4. Design review at 375px and desktop in the browser: first run from the passcode to the kid overview, the drawer, the home screen, a reload of the kid page (data persisted, passcode not asked again in the session). Critique applied: "Age 4" wording, 44px hit heights on the Edit and Got it buttons, the drawer's swipe handle.
+
+Decisions and deviations:
+- The base-nova Progress renders its own track; the indicator colour is set from the parent through a `[&_[data-slot=progress-indicator]]:` class, not a component change. Base UI adds a presentational helper span that page-text extractors read as "x"; it is invisible and ignored by screen readers.
+- The household is created when the passcode is set (S18), one step before D35's "first kid save"; the difference is invisible to the parent.
+- Routes: `/passcode`, `/passcode/forgot`, `/kids/new`, `/kids/[id]`, `/kids/[id]/edit`. Section cards link to `/kids/[id]/routine`, `/screen-time`, `/channels` and `/print`, which arrive in M6 to M10.
+
+Check: lint, typecheck, format:check, 178 tests, build exit 0; demo step 1 walked at both widths. Proves: C1.2, C1.4, C5.3, C5.4 (screens), C7.1, C7.4; C1.3 in the browser. Status: closed.
