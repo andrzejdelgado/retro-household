@@ -1,14 +1,10 @@
-import { TopBar } from "@/components/app-shell";
+import { Suspense } from "react";
+import { ScheduleTab } from "@/components/tv/schedule-tab";
 
-export default function Page() {
+export default function SchedulePage() {
   return (
-    <>
-      <TopBar title="TV" />
-      <main className="mx-auto w-full max-w-[720px] px-4 py-6 md:px-6">
-        <p className="text-muted-foreground">
-          Timeline, channels and library arrive in M8 and M9.
-        </p>
-      </main>
-    </>
+    <Suspense>
+      <ScheduleTab />
+    </Suspense>
   );
 }

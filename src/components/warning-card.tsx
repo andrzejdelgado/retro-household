@@ -3,7 +3,7 @@
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { useHousehold } from "@/lib/household/provider";
-import { dismiss, type Warning } from "@/lib/warnings/warnings";
+import { dismiss, type Fix, type Warning } from "@/lib/warnings/warnings";
 
 /**
  * One sentence, consequence first, then the fixes, then dismiss (docs/06-screen-specs.md §1).
@@ -12,9 +12,12 @@ import { dismiss, type Warning } from "@/lib/warnings/warnings";
 export function WarningCard({
   warning,
   primaryFirst = false,
+  onFix,
 }: {
   warning: Warning;
   primaryFirst?: boolean;
+  /** Return true to handle a fix yourself, for example on a draft that is not saved yet. */
+  onFix?: (fix: Fix) => boolean;
 }) {
   const { update } = useHousehold();
   return (
@@ -29,7 +32,10 @@ export function WarningCard({
               size="sm"
               variant={primaryFirst && i === 0 ? "default" : "secondary"}
               disabled={Boolean(fix.disabled)}
-              onClick={() => update((h) => fix.apply(h))}
+              onClick={() => {
+                if (onFix?.(fix)) return;
+                update((h) => fix.apply(h));
+              }}
             >
               {fix.label}
             </Button>

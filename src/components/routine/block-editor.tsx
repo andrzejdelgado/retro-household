@@ -160,7 +160,7 @@ function BlockForm({
           <Label htmlFor="block-kind">Kind</Label>
           <Select value={kind} onValueChange={(v) => setKind(v as BlockKind)}>
             <SelectTrigger id="block-kind" className="h-11 w-full">
-              <SelectValue />
+              <SelectValue>{KIND_LABELS[kind]}</SelectValue>
             </SelectTrigger>
             <SelectContent>
               {CUSTOM_KINDS.map((k) => (

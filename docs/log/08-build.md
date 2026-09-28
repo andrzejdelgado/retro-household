@@ -154,3 +154,22 @@ Decisions and deviations:
 - The Next.js runtime overlay showed the crash from the old data shape; the record keeps it as the reason the model gained `days`.
 
 Check: lint, typecheck, format:check, 180 tests, build exit 0; J5 and J13 walked at both widths. Proves: C2.2, C2.3, C2.4 (screens), C6.1 (through the demo clock control; the birthday walk waits for M12). Status: closed.
+
+## M8 — Library and channels
+Date: 2026-09-28
+
+Steps taken (in order):
+1. Media module: duration and a poster frame read from a video file in the browser, blobs stored under `video:` and `poster:` keys, a Show record returned; a blob-URL hook that revokes on unmount; twelve channel glyphs.
+2. S12 Library: category tiles, a collapsible age range on the two-thumb Slider (D43), a grid of poster cards with duration, category, ages and "used by", delete behind a confirm and disabled while a programme uses the show, the add form as a Drawer on mobile and a Dialog on desktop with a drop zone, file picker, title, category and age range, per-file progress.
+3. S20 Household channels under the TV tab with a tab per kid, tiles with the on-air show or the next on-air time, an add tile per kid with the four-channel limit and the under-3 note.
+4. S09 Channels per kid with the inline PIN ask before the first channel (D31), channel cards, W05 and W11 cards.
+5. S10 Channel editor: name, icon grid, day toggles, start and end, "Vary by day" with a day switcher and copy to other days (D30), the programme with computed start times and the off-air remainder, a library picker as Drawer or Sheet, warnings derived from the unsaved draft and applied to it, the no-default state for a kid with no slot or a zero cap (D27), Save and Remove.
+6. The TV tab page holds Timeline (M9), Channels and Library as views (D42).
+7. Design review in the browser: both views at phone width, a real import of a 4-second WebM generated in the page from a canvas (duration and poster read correctly), Henry's editor with the picker adding the clip at 16:57 and saving, Grace's new-channel state with W05 from the first moment, desktop layouts of the editor, library and channels.
+
+Decisions and deviations:
+- Selects show the label of the chosen value, not the raw key; two selects were corrected.
+- The editor intercepts warning fixes so they apply to the draft, and "Remove the channel" on an unsaved channel simply leaves the editor.
+- This shadcn ToggleGroup takes an array value even for single selection; used as shipped.
+
+Check: lint, typecheck, format:check, 180 tests, build exit 0; J6 walked at both widths. Proves: C4.2 (screen), C4.4 (parent side), C5.4. Status: closed.
