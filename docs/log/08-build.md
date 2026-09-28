@@ -20,6 +20,6 @@ Decisions and deviations:
 - Dependencies beyond the plan's table, all pulled in by `shadcn init`: `@base-ui/react`, `class-variance-authority`, `tw-animate-css`, `cn`, `shadcn`. Recorded in `DEV-PLAN.md`.
 - `.claude/launch.json` holds the dev server config for the desktop app's preview when the project folder is the root.
 
-Check: `npm run lint`, `npm run typecheck`, `npm run format:check`, `npm test` (1 test) and `npm run build` all green locally. CI runs on this push. Shell seen at both widths. Vercel: guided with the user after this entry.
+Check: `npm run lint`, `npm run typecheck`, `npm run format:check`, `npm test` (1 test) and `npm run build` all green locally and in CI (the first CI run failed on Prettier for a Markdown file; Markdown is now excluded from Prettier). Shell seen at both widths locally and on the deployed URL. Vercel project created by the user from the dashboard with all defaults; production at https://retro-household.vercel.app, deploying on every push to main.
 
-Proves: enables C7.1. Status: closed pending the Vercel URL.
+Proves: enables C7.1. Status: closed.

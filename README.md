@@ -15,4 +15,4 @@ npm install
 npm run dev
 ```
 
-Parent app at `/`, TV app at `/tv`. Checks: `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`.
+Parent app at `/`, TV app at `/tv`. Production: https://retro-household.vercel.app Checks: `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`.
