@@ -1,9 +1,5 @@
+import { TvApp } from "@/components/tv-app/tv-app";
+
 export default function TvPage() {
-  return (
-    <main className="flex min-h-dvh items-center justify-center">
-      <p className="text-muted-foreground text-[32px]">
-        TV app arrives in M11.
-      </p>
-    </main>
-  );
+  return <TvApp />;
 }

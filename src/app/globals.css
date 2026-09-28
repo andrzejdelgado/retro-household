@@ -247,3 +247,40 @@
     height: auto !important;
   }
 }
+
+/* The TV app's off-air shape (T04): one slow drift and breath a minute; static under reduced motion. */
+@keyframes tv-off-air {
+  0% {
+    transform: translate(-100px, 0) scale(0.95);
+  }
+  50% {
+    transform: translate(100px, 20px) scale(1.05);
+  }
+  100% {
+    transform: translate(-100px, 0) scale(0.95);
+  }
+}
+.tv-off-air {
+  animation: tv-off-air 60s ease-in-out infinite;
+}
+@keyframes tv-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+  75% {
+    transform: translateX(8px);
+  }
+}
+.tv-shake {
+  animation: tv-shake 200ms ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tv-off-air,
+  .tv-shake {
+    animation: none;
+  }
+}

@@ -201,3 +201,22 @@ Decisions and deviations:
 - C1.1's timed run waits for M12 with the full demo path; the flow from an empty app to a printed weekday is now complete end to end.
 
 Check: lint, typecheck, format:check, 180 tests, build exit 0; J8 walked at both widths. Proves: C3.2, C3.3 (composition), C3.4 (pages per day type), C3.1 pending the print dialog. Status: closed.
+
+## M11 — TV app
+Date: 2026-09-28
+
+Steps taken (in order):
+1. A ticking TV clock: the demo clock, when set, is the moment the TV page opened and time advances from there, so a mid-show tune-in can be shown (C4.1, C6.1).
+2. T01 PIN: four large dots, a numpad, keyboard digits, a calm clear with a short shake on a wrong PIN (static under reduced motion), no names, no hint (C4.6).
+3. T02 Picker: up to four tiles with the current show's poster or the channel icon when on air, dimmed with a power glyph when off (C4.4); arrows move focus, Enter selects, the focus ring in the kid's colour.
+4. T03 Playback: the show plays from the broadcast offset; the channel badge fades after two seconds; arrows switch channels; a missing file shows the icon only; seconds are counted every second and written to the log every five and on leaving, for the kid and every co-watcher (C4.5). A spent budget shows off-air (D15, D46).
+5. T04 Off-air: one slow drift and breath a minute in the kid's colour, silent, wordless, static under reduced motion (C4.3).
+6. T05 Co-watch: Cmd+K or Ctrl+K dims the picture and lists the other kids with switches and a budget note; Done; opened once automatically inside an acknowledged overlap with those kids switched on (D33). Escape returns to the PIN screen from anywhere (C4.7).
+7. Review in the browser at desktop width with the demo clock: PIN by keyboard, the picker, the missing-file state, the overlay with Grace switched on, both viewing logs in the parent app (Henry's minutes, Grace's marked "together", the overage on the bell), the clip playing 1.9 seconds in when the clock said 16:57, and the off-air screen after it ended.
+
+Decisions and deviations:
+- Base UI portals dialogs to the body, outside the TV route's dark wrapper; the TV layout now puts the `dark` class on the document root while mounted.
+- React Compiler lint rules shaped the code: no ref writes in render, no clock reads in render, and the together-slot check runs when a channel is entered rather than in an effect.
+- The browser tool's typed keys do not reach a page with no focused element; keyboard behaviour was verified by dispatching key events in the page, and the numpad covers mouse use.
+
+Check: lint, typecheck, format:check, 180 tests, build exit 0; J9 and J10 walked. Proves: C4.1, C4.3, C4.4, C4.5, C4.6, C4.7. Status: closed.
